@@ -1,0 +1,106 @@
+.tabbar-badge {
+  background: #da184b;
+  position: absolute;
+  color: #f1e6e6;
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  justify-content: center;
+  left: 100%;
+  bottom: 100%;
+  margin-bottom: -24px;
+  margin-left: -30px;
+}
+.tabbar-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.tabbar-background {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.tabbar-item {
+  z-index: 1;
+}
+.animated-item {
+  z-index: 2;
+}
+.tabbar-menu span:after {
+  width: 16pt;
+  height: 1.5pt;
+  background: #333;
+  display: block;
+  position: absolute;
+  transition: all 0.3s ease-out;
+  top: 6px;
+  transform-origin: left;
+  content: "";
+}
+.tabbar-menu span:before {
+  width: 16pt;
+  height: 1.5pt;
+  background: #333;
+  display: block;
+  position: absolute;
+  transition: all 0.3s ease-out;
+  bottom: 6px;
+  transform-origin: left;
+  margin-left: 0;
+  content: "";
+}
+.opened .tabbar-menu span:before {
+  transform: rotate(45deg);
+  margin-left: 3pt;
+  margin-bottom: 1px;
+}
+.opened .tabbar-menu span:after {
+  transform: rotate(-45deg);
+  margin-left: 3pt;
+  margin-top: 2px;
+}
+.other-tabbar-menu-item {
+  border-radius: 25pt;
+  margin: 5px 0;
+  background: #ffffffd6;
+  height: 50px;
+  display: flex;
+  transform: translate(0px, 150%);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  box-shadow: 0 0 10px #33333342;
+}
+.other-tabbar-menu-item i {
+  font-size: 18pt;
+}
+.other-tabbar-menu-item p {
+  font-size: 8pt;
+}
+.other-menu-item-container {
+  position: relative;
+  width: 100%;
+}
+
+scrollbar .scroll-content,
+[scrollbar] .scroll-content,
+[data-scrollbar] .scroll-content {
+  will-change: top;
+}
+scrollbar.scrolling .scroll-content,
+[scrollbar].scrolling .scroll-content,
+[data-scrollbar].scrolling .scroll-content {
+  pointer-events: none;
+}
+scrollbar.scrolling .scroll-content .scroll-content,
+[scrollbar].scrolling .scroll-content .scroll-content,
+[data-scrollbar].scrolling .scroll-content .scroll-content {
+  pointer-events: auto;
+}

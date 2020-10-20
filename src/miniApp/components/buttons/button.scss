@@ -1,0 +1,97 @@
+.btn.with-icon-left {
+  display: flex;
+}
+.btn {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  display: flex;
+  transition: all 0.2s ease-out;
+}
+.btn.btn-inline {
+  padding: 20px 30px;
+}
+.btn-block {
+  width: 100%;
+}
+.btn.btn-fluid {
+  display: flex;
+  flex: 0 0 100%;
+}
+.btn.btn-bordered {
+  border: 2px solid #333;
+}
+.btn-circle .ripple-cover {
+  border-radius: 50%;
+}
+button {
+  padding: 0;
+  border: 0;
+  border-style: none;
+}
+.btn-block .btn {
+  width: 100%;
+}
+.btn-icon-left.icon-button {
+  margin-right: 5px;
+}
+span.btn-arrow {
+  right: 10px;
+  position: absolute;
+  font-size: 12px;
+}
+.btn-icon-right i {
+  margin-left: 5px;
+}
+.button-container.fixed-btn {
+  margin-bottom: 0;
+}
+.button-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+.button-container.btn-right {
+  justify-content: flex-end;
+}
+.button-container.btn-left {
+  justify-content: flex-start;
+}
+.button-container.btn-center {
+  justify-content: center;
+}
+.btn-auto .btn,
+.btn-inline .btn {
+  display: inline-flex;
+  padding: 20px 30px;
+}
+.btn-inline {
+  display: inline-flex;
+}
+.btn-inline .btn {
+  margin-right: 20px;
+}
+.kb-grid-box .button-container {
+  margin-bottom: 0;
+}
+.kb-grid-box.equal .button-container:before {
+  content: "";
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 0;
+}
+.btn-icon-top .btn {
+  flex-direction: column;
+}
+.btn-icon-bottom .btn {
+  flex-direction: column-reverse;
+}
+.btn-icon-right .btn {
+  flex-direction: row-reverse;
+}
+.btn-icon-top i,
+.btn-icon-bottom i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,135 @@
+.list-item {
+  display: flex;
+  margin: 0 -20px;
+  position: relative;
+  overflow: hidden;
+}
+.with-icon.list-block {
+  display: flex;
+  flex: 1 1 100%;
+}
+
+.list-thumb {
+  max-width: 70px;
+  max-height: 70px;
+  display: flex;
+  margin-right: 15px;
+
+  &.list-thumb-middle {
+    align-items: center;
+  }
+}
+
+.list-item-arrow {
+  display: flex;
+
+  &.list-arrow-middle {
+    align-items: center;
+  }
+}
+.list-thumb-cover img {
+  object-fit: cover;
+}
+.list-thumb-cover {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+}
+
+.list-thumb-cover.withbg {
+  width: 47px;
+  height: 47px;
+  align-items: center;
+  justify-content: center;
+}
+span.list-icon-letter {
+  width: 30pt;
+  height: 30pt;
+  color: #fff;
+  line-height: 1em;
+  border-radius: 50%;
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  justify-content: center;
+}
+.list-item.swipeable .list-background:before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  width: 1px;
+  height: 40%;
+  top: 30%;
+  background: #81808894;
+}
+.list-item.swipeable.delete-swipe .list-background:before {
+  left: auto;
+  right: 5px;
+}
+.list-item.swipeable.delete-swipe .list-background:after {
+  left: auto;
+  right: 8px;
+}
+.list-background {
+  position: relative;
+  padding: 10px 20px;
+  width: 100%;
+  z-index: 1;
+}
+.list-swipe-delete {
+  z-index: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.delete-swipe .list-swipe-delete {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  flex-direction: row-reverse;
+}
+.list-item.swipeable .list-background:after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  width: 1px;
+  height: 30%;
+  top: 35%;
+  background: #81808894;
+}
+.list-swipe-actions .list-swipe-actions-item {
+  display: flex;
+  flex: 1 1 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  box-shadow: -2px 0 3px #33333347;
+}
+.list-swipe-actions {
+  z-index: 0;
+  position: absolute;
+  display: flex;
+  width: 50%;
+  height: 100%;
+}
+.list-thumb-cover i {
+  font-size: 1.2em;
+}
+.list-item-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+  justify-content: center;
+}
+small.list-sub-text {
+  opacity: 0.5;
+}
+.list-style-detached .list-item {
+  margin: 0;
+  margin-bottom: 10px;
+}

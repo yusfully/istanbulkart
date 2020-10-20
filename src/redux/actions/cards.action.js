@@ -1,0 +1,24 @@
+import {
+  CARDS_FETCH,
+  CARDS_DELETE,
+  CARDS_ADD,
+  SET_ACTIVE_CARD,
+} from "../actionTypes";
+
+export const fetchCards = (cards) => ({
+  type: CARDS_FETCH,
+  payload: cards,
+});
+export const addCard = (credential) => ({
+  type: CARDS_ADD,
+  payload: credential,
+});
+export const deleteCard = (id) => ({
+  type: CARDS_DELETE,
+  payload: id,
+});
+export const setActiveCard = (id,index) => ({
+  type: SET_ACTIVE_CARD,
+  id: id,
+  index:index
+});

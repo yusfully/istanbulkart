@@ -1,0 +1,180 @@
+.swipable {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+.actionsheet .actionsheet-main-cover {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.swipable-page-main-cover {
+  background: #f6f6f7;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.swipable-list {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+}
+.action-sheet-main-content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.swipable-horizontalButtons p {
+  text-overflow: ellipsis;
+  position: absolute;
+  font-size: 0.6rem;
+  left: 0;
+  bottom: 0;
+  transform: translate(0px, 100%);
+  text-align: center;
+  width: 100%;
+}
+.swipable-horizontalButtons .action-sheet-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  position: relative;
+  margin-bottom: 20px;
+}
+.touch-icons:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  width: 20px;
+  transition: all 0.3s;
+  right: 50%;
+  transform: translate(-50%, 0px);
+  height: 3pt;
+  margin-right: -12px;
+  border-radius: 4px;
+  background: #ccc8c8;
+}
+.dragging .touch-icons:after {
+  transform: rotate(-35deg);
+  margin-left: -5px;
+}
+.dragging .touch-icons:before {
+  transform: rotate(35deg);
+  margin-right: 0px;
+}
+.touch-icons {
+  position: relative;
+  width: 100%;
+}
+.swipable-verticalButtons .button-swipable i {
+  margin-right: 20px;
+  position: absolute;
+  right: 0;
+}
+.swipable-verticalButtons .button-swipable {
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  display: flex;
+}
+.swipable-verticalButtons .action-sheet-cover {
+  margin: -4px -20px;
+}
+
+.touch-icons:after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s;
+  top: 0px;
+  width: 20px;
+  left: 50%;
+  transform: translate(-50%, 0px);
+  height: 3pt;
+  margin-left: 8px;
+  border-radius: 4px;
+  background: #ccc8c8;
+}
+.swipable .title {
+  font-weight: 200;
+  padding: 20px 0;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 20px;
+  padding-top: 0;
+  font-size: 1.2rem;
+}
+.button-swipable-block {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #dedede;
+  color: #333;
+  margin: -20px;
+  margin-top: 20px;
+}
+.swipable .overlay {
+  background-color: #333;
+  opacity: 0;
+  transition: opacity 300ms;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.swipable .overlay {
+  background-color: #333;
+  opacity: 0;
+  transition: opacity 300ms;
+}
+.swipable .slide-enter .overlay {
+  opacity: 0;
+}
+.action-sheet-main-content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.swipable .slide-enter-active .overlay,
+.swipable .slide-enter-done .overlay {
+  opacity: 0.3;
+}
+
+.swipable .slide-enter-active .swipable-main-cover,
+.swipable .slide-enter-done .swipable-main-cover {
+  transform: translate(0, 0%);
+}
+.swipable .slide-exit-active .swipable-main-cover,
+.swipable .slide-exit-done .swipable-main-cover {
+  transform: translate(0, 100%);
+}
+.horizontal-swipable .swipable-actions-cover {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.kb-grid-box.equal .action-sheet-cover:before {
+  content: "";
+  padding-bottom: 100%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 0;
+}
+.swipable a.btn-normal.button.btn {
+  padding: 0;
+}
+.swipable-relative {
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "pangrambold";
+  src: url("./assets/fonts/pangram-bold-webfont.woff2") format("woff2"),
+    url("./assets/fonts/pangram-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pangramlight";
+  src: url("./assets/fonts/pangram-light-webfont.woff2") format("woff2"),
+    url("./assets/fonts/pangram-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "pangrammedium";
+  src: url("./assets/fonts/pangram-medium-webfont.woff2") format("woff2"),
+    url("./assets/fonts/pangram-medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  margin: 0;
+  font-family: "pangrammedium", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+html {
+  position: fixed;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+body {
+  font-family: sans-serif;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: left;
+  margin: 0;
+  line-break: anywhere;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+.app-inner {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 50pt;
+  padding-top: 44pt;
+}
+#root {
+  background: #ffc002;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+p {
+  margin: 0;
+}

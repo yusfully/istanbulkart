@@ -1,0 +1,71 @@
+.tab-item {
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px 20px;
+  position: relative;
+  font-size: 0.8em;
+}
+.tab-bg {
+  display: flex;
+  flex: 1 1 100%;
+}
+.justified {
+  justify-content: space-between;
+}
+.iOS .tab-item {
+  font-size: 0.6rem;
+}
+
+.justified .tab-item {
+  flex: 1 1 auto;
+  z-index: 99;
+}
+.tab-item div {
+  white-space: nowrap;
+}
+.tab-list-cover.iOS {
+  padding: 20px;
+}
+.mask.tab-item {
+  overflow: hidden;
+}
+.tab-item-cover {
+  overflow: hidden;
+}
+
+span.center-tab-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.mask {
+  position: absolute;
+}
+.mask-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
+  display: flex;
+  pointer-events: none;
+  color: white;
+}
+
+.tab-item .masked {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.tab-list-item-cover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

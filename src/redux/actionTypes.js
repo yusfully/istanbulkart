@@ -1,0 +1,20 @@
+export const CURRENT_USER = "CURRENT_USER";
+export const SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS";
+export const SIGN_IN_FAIL = "SIGN_IN_FAIL";
+export const SIGN_IN_START = "EMAIL_SIGN_IN_START";
+export const USER_SESSION = "USER_SESSION";
+export const SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS";
+export const SIGN_OUT_FAIL = "SIGN_OUT_FAIL";
+export const SIGN_OUT_START = "SIGN_OUT_START";
+export const ACTIVATION_START = "ACTIVATION_START";
+export const ACTIVATION_FAIL = "ACTIVATION_FAIL";
+export const ACTIVATION_SUCCESS = "ACTIVATION_SUCCESS";
+
+export const SET_ACTIVE_CARD = "SET_ACTIVE_CARD";
+export const CARDS_FETCH = "CARDS_FETCH";
+export const CARDS_DELETE = "CARDS_DELETE";
+export const CARDS_ADD = "CARDS_ADD";
+export const SET_MONEY = "SET_MONEY";
+export const ADD_MONEY = "ADD_MONEY";
+export const RESET_MONEY = "RESET_MONEY";
+export const PAY_MONEY = "PAY_MONEY";

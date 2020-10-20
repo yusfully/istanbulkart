@@ -1,0 +1,50 @@
+.carousel.tab-cover {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.carousel.tab-cover .tab-item {
+  padding: 1px;
+  z-index: 3;
+}
+.arrow-right.arrow-content {
+  position: absolute;
+  top: 50%;
+  transform: translate(0px, -50%);
+  right: 0;
+  padding: 10px;
+}
+.arrow-left.arrow-content {
+  position: absolute;
+  top: 50%;
+  transform: translate(0px, -50%);
+  left: 0;
+  padding: 10px;
+}
+.carousel.rectangle {
+  position: relative;
+}
+.rectangle .carousel.tab-cover .tab-item,
+.circle .carousel.tab-cover .tab-item {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  max-width: 15px;
+}
+.circle .carousel.tab-cover .tab-item .dot-container {
+  border-radius: 5px;
+}
+
+span.dot-container {
+  transition: all 0.3s;
+}
+.rectangle .tab-item-cover,
+.circle .tab-item-cover {
+  justify-content: center;
+}
+.carousel.circle {
+  border-radius: 0;
+}
+.arrow-content {
+  background: #4242429c;
+  color: #fff;
+}

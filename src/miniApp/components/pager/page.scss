@@ -1,0 +1,29 @@
+.page-scroll.fade-enter-done {
+  transform: translate(0, 0);
+}
+.new-page-main.fade-enter-done {
+  opacity: 1;
+}
+.page-scroll.fade-enter {
+  transform: translate(100%, 0px);
+}
+.page-scroll.fade-exit {
+  transform: translate(100%, 0px);
+}
+
+.page-scroll.fade-enter.fade-enter-active {
+  transform: translate(0, 0);
+  transition: transform 300ms, transform 300ms;
+}
+.page-scroll {
+  overflow: scroll;
+  height: 100vh;
+  background: #f7f7f7;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  transition: transform 300ms, transform 300ms;
+  left: 0;
+  will-change: transform;
+  padding-bottom: 50pt;
+}
