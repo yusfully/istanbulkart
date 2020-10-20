@@ -1,0 +1,2 @@
+# istanbulkart
+istanbulkartminiapp
