@@ -92,7 +92,7 @@ const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
     setPos(newPos);
   };
   const swipeTouchEnd = (e) => {
-    console.log(isOpened);
+    
     if (isOpened) {
       if (pos > -limit + 40) {
         contentMain.current.style.transition = `transform 300ms`;

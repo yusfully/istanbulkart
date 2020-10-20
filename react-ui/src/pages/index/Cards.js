@@ -79,10 +79,12 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
   const [cardProgress, setCardProgress] = useState();
 
   useEffect(() => {
-    console.log(swipePage.current.domEl.getBoundingClientRect().top);
+    debugger
+    console.log((window.innerHeight * 2 / 3) -
+    window.innerHeight-swipePage.current.domEl.getBoundingClientRect().top);
     setLimit(
-      (window.innerHeight * 2) / 3 -
-        swipePage.current.domEl.getBoundingClientRect().top
+      (window.innerHeight * 2 / 3) -
+      window.innerHeight-swipePage.current.domEl.getBoundingClientRect().top*-1
     );
   }, []);
 
