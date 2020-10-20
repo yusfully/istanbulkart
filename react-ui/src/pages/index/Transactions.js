@@ -95,7 +95,9 @@ const transactions = [
 
 const Transactions = ({ myCards }) => {
   return (
-    <Fragment>
+    <div style={{
+      backgroundColor:"#f6f6f7"
+    }}>
       <List style="atached" platform="ios" addClass="transaction-lists-cover">
         {transactions.map((element) => {
           return (
@@ -168,7 +170,7 @@ const Transactions = ({ myCards }) => {
           );
         })}
       </List>
-    </Fragment>
+    </div>
   );
 };
 

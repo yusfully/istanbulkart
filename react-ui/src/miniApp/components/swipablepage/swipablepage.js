@@ -26,9 +26,12 @@ const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
   const [pos, setPos] = useState(0);
   useEffect(() => {
     if (limit) {
-      setHeight(limit + contentMain.current.offsetHeight - 15);
+     
+      setHeight(limit + contentMain.current.offsetHeight );
     }
   }, [limit]);
+
+ 
   const handleTouchStart = (e) => {
     setPos(0);
     setTouch(e.touches[0].clientY);
