@@ -120,7 +120,9 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
 
     let cardsarr = Object.keys(myCards).map((element, index) => {
       return (
-        <div className="template">
+        <div style={{
+          height:`${window.innerWidth*0.72*0.55}px`
+        }} className="template">
           <CardTemplate
             activeCard={active}
             index={index}

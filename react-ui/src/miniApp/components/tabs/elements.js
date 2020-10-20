@@ -226,7 +226,7 @@ export const TabContent = ({
   };
   return (
     <div
-      style={{ minHeight: `${tabState.height + 30}px` }}
+      style={{ minHeight: `${tabState.height+20 }px` }}
       className="tab-content-cover"
     >
       <div

@@ -2,13 +2,12 @@
   width: 72%;
   position: relative;
   color: #f2f2f2;
-  flex: 0 0 270px;
   padding: 5pt;
-  padding-bottom: 20px;
 }
 .rotate-cover {
   transform-style: preserve-3d;
   perspective: 500px;
+  height: 100%;
 }
 .template svg {
   max-height: 100%;
@@ -37,7 +36,6 @@
   height: 100%;
   position: relative;
   border-radius: 20px;
-  height: 148px;
 }
 .shadow {
   width: 80%;
@@ -53,7 +51,7 @@
   margin-bottom: 5px;
 }
 .card-number {
-  font-size: 18px;
+  font-size: 10pt;
   font-weight: 400;
   letter-spacing: 1px;
 }
