@@ -7,12 +7,16 @@ const CardTemplate = ({ amount, name, id, number, isMain }) => {
   return (
     <Fragment>
       <div className="card card-add">
+      <div
+        
+          className="shadow"
+        ></div>
         <div className="add-card-inner">
           <SvgIcon
             name="plus"
             lineCap="round"
             join="round"
-            stroke={"#333333"}
+            stroke={"#63636d"}
             strokeWidth={"20"}
             size="50"
           ></SvgIcon>

@@ -1,0 +1,56 @@
+.rounded.cutted-line .input-form {
+  border: 1px solid #4f4f4f;
+  border-radius: 10px;
+}
+.rounded.cutted-line .input-form .label {
+  position: absolute;
+  transform: translate(0px, -50%);
+  margin: 0;
+  background: #fff;
+  padding: 0 10px;
+  margin-left: 10%;
+}
+.rounded.cutted-line .input-form .label p {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.5em;
+}
+.rounded.cutted-line .form-content {
+  padding-left: 0;
+}
+.modal-cover {
+  width: 100%;
+}
+.template.new-card-temp {
+  width: 72vw;
+  height: 40vw;
+}
+.new-card-temp .card {
+  transform: scale(1);
+  opacity: 1;
+}
+.new-card-form {
+  width: 72vw;
+  position: relative;
+  margin-top: 20px;
+}
+
+.row {
+  margin: -10px;
+}
+.bordered.radius.button.filled .btn {
+  width: 100%;
+  background: #ffbf00;
+  color: #171618;
+  font-weight: 600;
+  font-size: 9pt;
+}
+.form-block {
+  margin-bottom: 20px;
+  position: relative;
+}
+.modal-cover {
+  width: 100%;
+  border-radius: 20px;
+  margin: 20px;
+}

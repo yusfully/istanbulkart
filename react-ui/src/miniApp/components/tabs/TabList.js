@@ -31,11 +31,16 @@ const TabList = forwardRef(({ children, carousel, justified }, ref) => {
     });
   };
 
-  const onProgress = (percent, page) => {
+  const onProgress = (percent, page,nextTab) => {
     if (!scrollable.current) return;
     if (!tabState.animatedItem) return;
+    if(carousel) return
+
+    
     let size = scrollable.current.container.current.getBoundingClientRect()
       .width;
+
+     
 
     let width =
       document.getElementById(children[page].props.id).offsetWidth +

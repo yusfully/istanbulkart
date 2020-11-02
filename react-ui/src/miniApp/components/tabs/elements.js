@@ -109,9 +109,7 @@ export const TabContent = ({
   swipe,
   carousel,
   onTabChange,
-  onProgressTab,
-  lock,
-  onFinish
+  onProgressTab
 }) => {
   const { tabState, dispatchTabSwipe } = useTabContext();
 
@@ -124,7 +122,7 @@ export const TabContent = ({
   }, [tabState.goTo]);
   useEffect(() => {
 
-   console.log(tabState.contents)
+  
     let contents = tabState.contents.map((component) => {
       const Component = component();
       return Component;
@@ -143,7 +141,7 @@ export const TabContent = ({
   }, [tabState.swipeProgress]);
 
   const scrollableContent = useRef();
-  const scrollableInner = useRef();
+  
 
   const currentTabChanged = (current, prev) => {
     dispatchTabSwipe({
@@ -165,19 +163,9 @@ export const TabContent = ({
     });
   };
 
-  const handleScrollContent = (offset, limit, data) => {
-    if (onFinish) {
-      if (offset.y === 0) {
-        onFinish("start");
-      } else if (offset.y === data.limit.y) {
-        onFinish("finish");
-      } else {
-        onFinish("mid");
-      }
-    }
-  };
+
   const renderElements = () => {
-    console.log(content,"renderelements",tabState.contents)
+  
     let elements = [];
     let i = -1;
 
@@ -196,16 +184,9 @@ export const TabContent = ({
             className="tab-content-item"
             key={i}
           >
-            <Scrollable
-              ref={scrollableInner}
-              damping={0.1}
-              continuousScrolling={true}
-              direction="y"
-              lock={lock || false}
-              onScroll={handleScrollContent}
-            >
+           
               {content[i]}
-            </Scrollable>
+             
           </div>
         )
       );

@@ -1,0 +1,273 @@
+.select svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.select:focus {
+  outline: 0;
+}
+.select.selection {
+  box-shadow: 0 0 1px 1px #00a9e0;
+}
+.select-value {
+  white-space: nowrap;
+}
+.select.right .options.drop-down {
+  left: auto;
+  right: 0;
+}
+.select.left .options.drop-down {
+  left: 0;
+  right: auto;
+}
+.drop-down .option,
+.drop-down .option.selected,
+.drop-down .option.focused {
+  border: none;
+  padding: 10px 20px;
+  font-size: 9pt;
+  color: #93929c;
+}
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.selection {
+  position: relative;
+  min-height: 50px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  padding-right: 30px;
+  background: #fff;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.value {
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+}
+
+.multiple {
+  padding-right: 30px;
+  margin-right: 5px;
+  background: #f1f1f1;
+  color: #46494a;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+input.delete {
+  right: 20px;
+  top: 20px;
+}
+.room-container {
+  padding: 20px;
+  border: 1px solid #dedede;
+  position: relative;
+  margin: 20px 0;
+}
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  padding: 10px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.placeholder {
+  padding: 5px 10px;
+  color: #4d4d4d;
+}
+
+.arrow-select {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  display: block;
+
+  padding: 10px;
+  font-size: 10px;
+  color: #ddd;
+}
+
+.bg-modal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  border: solid #ddd;
+  border-width: 0 1px;
+  background: #fff;
+}
+
+.option {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  display: flex;
+}
+.option.selected,
+.option.selected.focused {
+  border: 1px solid #dbdcde;
+  margin: -1px -1px 0;
+  background: #eeeff1;
+}
+.bottom-bar {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.option.focused {
+  background: #ffffff;
+}
+.col-list.justify-center {
+  justify-content: center;
+}
+.selection span.arrow {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+}
+.checkbox {
+  content: "";
+  vertical-align: top;
+  display: inline-flex;
+  width: 24px;
+  align-items: center;
+  height: 24px;
+  justify-content: center;
+  padding: 2px;
+  border: 1px solid #dedede;
+  border-radius: 2px;
+  margin: 2px 12px 0 0;
+  color: #fff;
+  font-size: 10px;
+}
+span.border {
+  position: absolute;
+  bottom: 20px;
+  height: 1px;
+  background: #333;
+  width: 100%;
+  left: 0;
+}
+.selected .checkbox {
+  border-color: #d9f2fb;
+  background: #00a9e0;
+}
+.ui.error.message {
+  color: red;
+  font-size: 11px;
+  position: absolute;
+  bottom: 0;
+}
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+}
+.select svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  opacity: 1;
+}
+.select .arrow svg {
+  width: 0.5em;
+  height: 0.5em;
+}
+.select-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.options.modal {
+  position: fixed;
+  top: 0 !important;
+  height: 100vh;
+  left: 0;
+  z-index: 99;
+  max-height: none;
+}
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.select:focus {
+  outline: 0;
+}
+.bg-modal.down {
+  transform: translate(0px, 100%);
+  height: 100vh;
+}
+
+.select svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  opacity: 1;
+}
+.select .arrow svg {
+  width: 0.5em;
+  height: 0.5em;
+}
+.select-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.select:focus {
+  outline: 0;
+}
+
+.select-value {
+  flex: auto;
+  align-items: center;
+  display: flex;
+}
+.select.selection {
+  box-shadow: 0 0 1px 1px #00a9e0;
+}
+
+.selection {
+  position: relative;
+  padding: 5px;
+  border: 1px solid #ddd;
+  display: flex;
+  background: #fff;
+  flex-wrap: wrap;
+  align-items: center;
+}

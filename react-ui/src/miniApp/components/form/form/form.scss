@@ -1,0 +1,17 @@
+.form-content {
+  flex: 1 1 100%;
+}
+.form-block {
+  margin-bottom: 20px;
+  position: relative;
+}
+.fill.form-block {
+  padding-top: 30px;
+}
+.label,
+.label p {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.9em;
+}

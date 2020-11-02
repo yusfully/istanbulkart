@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { TweenMax, Power4 } from "gsap/all";
 import { useCollapseContext } from "./Provider";
 

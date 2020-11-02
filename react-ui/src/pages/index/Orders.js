@@ -5,7 +5,7 @@ import Transaction from "./Transaction";
 const transactions = [
   {
     uid: "042988E2115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7449817",
     date: "18/08/2020, 23:30",
     amount: "20,00",
@@ -14,7 +14,7 @@ const transactions = [
   },
   {
     uid: "0429s942115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7239817",
     date: "16/06/2020, 21:30",
     amount: "50,00",
@@ -23,7 +23,7 @@ const transactions = [
   },
   {
     uid: "042o46E2115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7449817",
     date: "03/09/2020, 07:30",
     amount: "100,00",
@@ -32,7 +32,7 @@ const transactions = [
   },
   {
     uid: "04910250115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7202117",
     date: "02/07/2020, 11:00",
     amount: "10,00",
@@ -41,7 +41,7 @@ const transactions = [
   },
   {
     uid: "04223212115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7400817",
     date: "19/06/2020, 12:30",
     amount: "20,00",
@@ -50,7 +50,7 @@ const transactions = [
   },
   {
     uid: "0429232315180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7239817",
     date: "21/07/2020, 21:30",
     amount: "50,00",
@@ -59,7 +59,7 @@ const transactions = [
   },
   {
     uid: "0422399E2115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7449817",
     date: "11/07/2020, 13:00",
     amount: "100,00",
@@ -68,7 +68,7 @@ const transactions = [
   },
   {
     uid: "049102323115180",
-    type: "yukleme",
+    type: "yukleme", category: "wallet",
     talimatNo: "7233117",
     date: "21/07/2020, 11:00",
     amount: "10,00",

@@ -10,10 +10,14 @@
   margin-top: 40px;
 }
 .istabulpay-button button.btn-filled.button.btn {
-  height: 85px;
-  font-size: 20px;
+  height: 80px;
+  font-size: 18px;
   overflow: hidden;
   color: #f2f2f2;
+}
+.istabulpay-button button.btn-filled.button.btn {
+  display: flex;
+  flex-direction: row-reverse;
 }
 .istabulpay-button:after {
   content: "";

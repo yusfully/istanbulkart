@@ -12,6 +12,7 @@ import { TweenMax, Power4, Linear } from "gsap/all";
 import Ripple from "../ripple/Ripple";
 import Icon from "../collapsable/index";
 import SvgIcon from "../../components/icon/svg/SvgIcon";
+import {useListContext} from "./Provider"
 
 const ListItem = ({
   noWrap,
@@ -23,6 +24,7 @@ const ListItem = ({
   text,
   rightSide,
   icon,
+  index,
   thumb,
   id,
   addClass,
@@ -50,13 +52,19 @@ const ListItem = ({
   const swipe = useRef();
   const deleteswipe = useRef();
   const handleChangeCollapse = (isopened) => {
+    
+    if(isopened){listDispatch({type:"changeCurrent",current:index})}
+    setCollapseIsOpened(isopened)
     setArrow(isopened ? 270 : 90);
   };
   const [arrowDegree, setArrow] = useState(
     arrow && arrow === "horizontal" ? 0 : 90
   );
+  const {listState, listDispatch}=useListContext()
   const [touch, setTouch] = useState(0);
+  const [closeCollapse, setcloseCollapse] = useState(false);
   const [pos, setPos] = useState(null);
+  const [collapseIsOpened, setCollapseIsOpened] = useState(null);
   const posref = useRef(null);
   const touches = useRef(null);
   const handleBlur = (e) => {
@@ -75,13 +83,24 @@ const ListItem = ({
       });
     }
   };
+  useEffect(() => {
+
+  if(listState.prev===index){
+    setcloseCollapse(true)
+  }else{
+    setcloseCollapse(false)
+  }
+   
+  }, [listState])
+
+  
   const memoizedListener = useMemo(() => handleBlur, []);
   const [isDeleted, setDeleted] = useState(0);
   const [isOpened, setIsOpened] = useState(false);
   const renderCollapse = (children) => {
     return (
-      <Collapse onChange={(e) => handleChangeCollapse(e)}>
-        <Collapse.Body>{renderListItem(text)}</Collapse.Body>
+      <Collapse  onChange={(e) => handleChangeCollapse(e)}>
+        <Collapse.Body close={closeCollapse} >{renderListItem(text)}</Collapse.Body>
         {React.Children.map(children, (child) => {
           if (child.type !== undefined && child.type.name === "CollapseList") {
             return <Collapse.Inner>{child.props.children} </Collapse.Inner>;
@@ -189,6 +208,10 @@ const ListItem = ({
     }
   };
 
+  useEffect(() => {
+    isOpened && console.log(isOpened)
+  
+  }, [isOpened])
   const handleTouchEnd = (e) => {
     if (deleteOnSwipe) {
       if (touches.current < -10 || pos < window.innerWidth * -0.75) {
@@ -207,7 +230,7 @@ const ListItem = ({
     }
 
     if (action && action.router) {
-      debugger;
+     
       history.push(`${match.url + "/" + action.router}`);
     }
   };
@@ -216,14 +239,14 @@ const ListItem = ({
     return (
       !isDeleted && (
         <div
-          ref={cover}
-          onTouchStart={(e) => handleTouchStart(e)}
-          onClick={(e) => handleTouchEnd(e)}
-          onTouchMove={(e) => handleSwipe(e)}
-          className={`list-item  ${
-            (swipeActions || deleteOnSwipe) && "swipeable"
-          } ${deleteOnSwipe && "delete-swipe"}`}
-        >
+        ref={cover}
+        onTouchStart={(e) => handleTouchStart(e)}
+        onTouchEnd={(e) => handleTouchEnd(e)}
+        onTouchMove={(e) => handleSwipe(e)}
+        className={`list-item  ${
+          (swipeActions || deleteOnSwipe) ? "swipeable" : ""
+        } ${deleteOnSwipe ? "delete-swipe" : ""} ${collapseIsOpened ? "opened" : ""}`}
+      >
           <div ref={mainDom} className="list-background">
             <div
               className={`${
@@ -271,7 +294,7 @@ const ListItem = ({
                       )) ||
                       (thumb.svgIcon && (
                         <SvgIcon
-                          name="bus"
+                          name={thumb.svgIcon ? thumb.svgIcon : "bus"}
                           stroke={"#333333"}
                           strokeWidth={"10"}
                           size={thumb.size ? thumb.size : 40}

@@ -24,8 +24,11 @@ const SvgIcon = ({
   const [icon, setIcon] = useState(null);
   const [notIconVisible, setnotIconVisible] = useState(not);
   useEffect(() => {
+if(name==="undefined") return
     if (name && !icon) {
+      
       const importIcon = async () => {
+
         try {
           const { default: namedImport } = await import(
             `../icons/${toProperCase(name)}.js`
@@ -34,10 +37,12 @@ const SvgIcon = ({
           ImportedIconRef.current = namedImport;
           setIcon(ImportedIconRef);
         } catch (err) {
+          
           throw err;
         }
+       
       };
-      importIcon();
+       importIcon();
     }
   }, [name]);
 

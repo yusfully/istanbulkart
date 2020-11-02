@@ -108,46 +108,31 @@ const CardTemplate = ({
           style={{
             flexDirection: "column",
             backgroundColor: "#161517",
-            borderRadius: "20px",
+            borderRadius: "20pt",
             height: "100%",
           }}
         >
-          <div>
+
+        <div className="card-top">
+        <div className="amount-card">
+          
+        {amount}<span class="price-icon">₺</span></div>
+          <div className="card-right-container">
             <div
               style={{
-                left: "0%",
-                height: "20%",
                 position: "relative",
+    display: "flex",
+    justifyContent:" flex-end",
+    paddingRight: "20px"
               }}
             >
               <Logo />
             </div>
-            <div
-              style={{
-                right: "5%",
-                top: "10%",
-                height: "20%",
-                position: "absolute",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <IBBLogo />
-                </div>
-              </div>
-            </div>
+         
           </div>
-
+          </div>
+         
+          
           <div
             style={{
               display: "flex",

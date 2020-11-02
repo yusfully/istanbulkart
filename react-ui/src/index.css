@@ -1,29 +1,37 @@
 @font-face {
-  font-family: "pangrambold";
-  src: url("./assets/fonts/pangram-bold-webfont.woff2") format("woff2"),
-    url("./assets/fonts/pangram-bold-webfont.woff") format("woff");
+  font-family: "bw-mitga";
+  src: url("./assets/fonts/bwmitga-regular.woff2") format("woff2"),
+    url("./assets/fonts/bwmitga-regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "pangramlight";
-  src: url("./assets/fonts/pangram-light-webfont.woff2") format("woff2"),
-    url("./assets/fonts/pangram-light-webfont.woff") format("woff");
+  font-family: "bw-mitga-light";
+  src: url("./assets/fonts/bwmitga-light.woff2") format("woff2"),
+    url("./assets/fonts/bwmitga-light.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "pangrammedium";
-  src: url("./assets/fonts/pangram-medium-webfont.woff2") format("woff2"),
-    url("./assets/fonts/pangram-medium-webfont.woff") format("woff");
+  font-family: "bw-mitga-bold";
+  src: url("./assets/fonts/bwmitga-bold.woff2") format("woff2"),
+    url("./assets/fonts/bwmitga-bold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "bw-mitga-black";
+  src: url("./assets/fonts/bwmitga-black.woff2") format("woff2"),
+    url("./assets/fonts/bwmitga-black.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 body {
   margin: 0;
-  font-family: "pangrammedium", sans-serif;
+  font-family: "bw-mitga", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,7 +48,6 @@ html {
   width: 100%;
 }
 body {
-  font-family: sans-serif;
   margin: 0;
   width: 100%;
   height: 100%;

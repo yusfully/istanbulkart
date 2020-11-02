@@ -9,7 +9,7 @@ import React, {
 import Portal from "../pager/Portal";
 import "./actionsheet.scss";
 import Navigator from "../buttons/Navigator";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import {  CSSTransition } from "react-transition-group";
 import Grid from "../layout/grid/Grid";
 
 const ActionSheet = forwardRef(

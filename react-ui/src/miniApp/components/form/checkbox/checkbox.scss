@@ -1,0 +1,29 @@
+.check-box-block.form-block.list-type {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.chechbox-left.checked {
+  border-color: #51caa0;
+  /* background: #caffed; */
+}
+.chechbox-left {
+  width: 32px;
+  transition: all 0.3s ease-out;
+  height: 32px;
+  border-radius: 100%;
+  border: 2pt solid #efefef;
+  margin-right: 10px;
+  position: relative;
+}
+.check-box svg polyline {
+  stroke: #51caa1;
+  stroke-width: 2pt;
+  fill: none;
+  stroke-dasharray: 45px;
+  stroke-dashoffset: 45px;
+  transition: all 0.3s ease-out;
+}
+.checked svg polyline {
+  stroke-dashoffset: 0;
+}

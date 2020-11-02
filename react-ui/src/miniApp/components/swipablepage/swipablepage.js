@@ -7,9 +7,10 @@ import React, {
   useImperativeHandle,
 } from "react";
 import "./swipablepage.scss";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
+import { TweenMax, Linear } from "gsap/all";
 
-const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
+const SwipablePage = forwardRef(({ children, lock, limit,onDrag }, ref) => {
   useImperativeHandle(ref, () => ({
     scrollPos(pos) {
       setContentScroll(pos);
@@ -33,31 +34,53 @@ const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
 
  
   const handleTouchStart = (e) => {
-    setPos(0);
+   
     setTouch(e.touches[0].clientY);
-    console.log(e.touches[0].clientY);
+   
   };
-  const handleTouchEnd = () => {
-    if (pos > 40) {
-      contentMain.current.style.transition = `transform 300ms`;
-      contentMain.current.style.transform = `translate(0px,100%)`;
+  const handleTouchEnd = (e) => {
+  
+   e.stopPropagation()
+   
+    if (pos <= -limit) {
+      animatePos(0)
+      
     } else {
-      contentMain.current.style.transition = `transform 300ms`;
-      contentMain.current.style.transform = `translate(0px,0%)`;
+     
+      animatePos(-limit)
     }
     setisDragging(false);
   };
 
   useEffect(() => {
-    if (contentMain.current) {
-      contentMain.current.style.transform = `translate(0px,${pos}px)`;
-    }
+
+    onDrag(pos)
+   
     if (pos === -limit) {
       setisOpened(true);
     } else if (pos === 0) {
       setisOpened(false);
     }
   }, [pos]);
+
+  const animatePos = (target) => {
+
+   
+      let object = {
+        x: pos,
+      };
+     
+   
+      TweenMax.to(object, 0.25, {
+        x: target,
+        ease: Linear.easeOut,
+        onUpdate: function () {
+         
+          setPos(object.x);
+        },
+      });
+    
+  };
 
   const swipeTouchStart = (e) => {
     setTouch(e.touches[0].clientY);
@@ -95,26 +118,22 @@ const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
     setPos(newPos);
   };
   const swipeTouchEnd = (e) => {
+  
     
     if (isOpened) {
       if (pos > -limit + 40) {
-        contentMain.current.style.transition = `transform 300ms`;
-        contentMain.current.style.transform = `translate(0px,0%)`;
-        setPos(0);
+     
+       animatePos(0,false)
       } else {
-        contentMain.current.style.transition = `transform 300ms`;
-        contentMain.current.style.transform = `translate(0px,-${limit}px)`;
-        setPos(-limit);
+        animatePos(-limit,true)
+        
       }
     } else {
       if (pos < -10) {
-        contentMain.current.style.transition = `transform 300ms`;
-        contentMain.current.style.transform = `translate(0px,-${limit}px)`;
-        setPos(-limit);
+       
+        animatePos(-limit,true)
       } else {
-        contentMain.current.style.transition = `transform 300ms`;
-        contentMain.current.style.transform = `translate(0px,0%)`;
-        setPos(0);
+        animatePos(0,false)
       }
     }
 
@@ -129,9 +148,7 @@ const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
         className="swipable-page-main-content"
       >
         <div
-          style={{
-            transition: isDragging ? "none" : "transform 300ms",
-          }}
+         
           ref={contentMain}
           className={`${isDragging ? "dragging" : ""} swipable-page-main-cover`}
         >
@@ -144,7 +161,7 @@ const SwipablePage = forwardRef(({ children, lock, limit }, ref) => {
                 alignItems: "center",
               }}
               onTouchStart={(e) => handleTouchStart(e)}
-              onTouchEnd={() => handleTouchEnd()}
+              onTouchEnd={(e) => handleTouchEnd(e)}
             >
               <div className="touch-icons"></div>
             </div>

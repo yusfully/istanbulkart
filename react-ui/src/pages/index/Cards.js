@@ -7,16 +7,19 @@ import CardTemplateAdd from "./CardTemplateAdd";
 import { connect } from "react-redux";
 import Transactions from "./Transactions";
 import Orders from "./Orders";
+import Modal from "../../miniApp/components/modal/Modal"
 import { addMoney, setMoney } from "../../redux/actions/money.action";
 import SwipablePage from "../../miniApp/components/swipablepage/swipablepage";
 import AddMoney from "./AddMoney";
 import ActionSheet from "../../miniApp/components/actionsheet/ActionSheet";
 import { resetMoney } from "../../redux/actions/money.action";
 import {setActiveCard} from "../../redux/actions/cards.action";
-
-import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
+import { useCardsContext } from "./Provider";
 
 import "./index.scss";
+import AddNewCard from "./AddNewCard";
+import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
+import { TabContent } from "../../miniApp/components/tabs/elements";
 
 const moneyData = {
   5: {
@@ -34,46 +37,39 @@ const moneyData = {
   100: {
     text: "100",
   },
-  250: {
-    text: "250",
-  },
-  500: {
-    text: "500",
-  },
-  1000: {
-    text: "1000",
-  },
   plus: {
     text: "+",
   },
 };
+
 const TabListElement = [
   {
     title: "İşlemlerim",
-    name: "shop",
-    component: () => <Transactions page={"page-1"} />,
+    name: "islemler",
   },
   {
     title: "Talimatlar",
-    name: "card",
-    component: () => <Orders page={"page-3"} />,
+    name: "talimatlar",
   },
 ];
-
 const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, resetMoney }) => {
 
 
-
+const topPart = useRef()
   const scrollCase = useRef();
   const addMoneyComp = useRef();
+  const height = useRef(window.innerWidth*0.72*0.55)
   const cardProg = useRef();
   const active = useRef();
   const swipePage = useRef();
   const history = useHistory();
   const match = useRouteMatch();
+
+  const { cardsState, cardsDispatch}=useCardsContext()
+  const [isAddCardVisible, setisAddCardVisible] = useState(false);
   const [isPlusActive, setisPlusActive] = useState(true);
   const [scrollDragLimit, setLimit] = useState();
-  const [cardList, setcards] = useState();
+  const [topPartHeight, settopPartHeight] = useState();
   const [lock, setLock] = useState(true);
   const [progress, setProgress] = useState();
   const [cardProgress, setCardProgress] = useState();
@@ -81,8 +77,7 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
   useEffect(() => {
    
     setLimit(
-      (window.innerHeight * 2 / 3) -
-      window.innerHeight-swipePage.current.domEl.getBoundingClientRect().top*-1
+      130
     );
   }, []);
 
@@ -93,7 +88,11 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
     scrollCase.current = "start";
   }, [myCards]);
 
+  useEffect(() => {
+    cardsDispatch({type:"isLocked",isLocked:lock})
+  }, [lock])
   const callbackFunction = (islock) => {
+  
     setLock(islock);
   };
   const moneyClosed = () => {
@@ -117,10 +116,9 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
   const renderCards = () => {
 
     let cardsarr = Object.keys(myCards).map((element, index) => {
+  
       return (
-        <div style={{
-          height:`${window.innerWidth*0.72*0.55}px`
-        }} className="template">
+        <div  className={`${index===activeCard.index ? "activeCard" : ""} template`}>
           <CardTemplate
             activeCard={active}
             index={index}
@@ -135,18 +133,15 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
       );
     });
 
-    let add = (
-      <div className="template">
-        <CardTemplateAdd></CardTemplateAdd>
-      </div>
-    );
+    
 
-    cardsarr.push(add);
+    
     return cardsarr;
   };
   useEffect(() => {
-    
-    console.log(match)
+
+    settopPartHeight(topPart.current.offsetHeight)
+   
   }, []);
   useEffect(() => {
     cardProg.current = cardProgress;
@@ -185,20 +180,51 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
       progress: progress,
       delta: delta,
     });
-  };
+  }
+
+  const handlePageDrag=(pos)=>{
+let rate=pos/scrollDragLimit
+let posTotal=topPartHeight+pos
+    topPart.current.style.height=posTotal+"px"
+
+ }
+
+ const handleAddCard=()=>{
+   
+  setisAddCardVisible(true)
+ }
 
   const handleAddMoney = () => {
     addMoneyComp.current.open();
   };
 
   const handleFinishScroll = (isfinished) => {
+    
     swipePage.current.scrollPos(isfinished);
   };
 
   return (
     <div className="transaction-list">
-    <div className="card-list-cover"> 
-    
+
+    <div onClick={()=>handleAddCard()} className="add-card">
+    <div className="title">
+   <h3 className="title-big">Kartlarım</h3>
+
+    </div>
+    <div className="add-card-action">
+    <span className="add-card-action-label">KART EKLE</span>
+    <SvgIcon
+    name="plus"
+    stroke={"#bb931b"}
+    strokeWidth={"25"}
+    size={16}
+    lineCap="rounded"
+    join="rounded"
+  ></SvgIcon>
+    </div>
+    </div>
+    <div ref={topPart} className="card-list-cover"> 
+   
    {myCards && <Carousel
     id="myCards"
     direction="x"
@@ -218,16 +244,12 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
       },
     }}
   >
+  
     {renderCards()}
   </Carousel>}
+ 
   <div className="card-amount-cover">
-  <div className="card-amount">
-          <small>BAKİYE</small>
-          <div className="amount-cover-text">
-            <span className="amount">{myCards[activeCard.id].amount}</span>
-            <span class="price-icon">₺</span>
-          </div>
-        </div> <div
+<div
         onClick={handleAddMoney}
          className="action">
         PARA YÜKLE
@@ -238,6 +260,7 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
       <div className="transaction-list-cover">
 
         <SwipablePage
+        onDrag={((pos)=>handlePageDrag(pos))}
           limit={scrollDragLimit}
           lock={(islocked) => callbackFunction(islocked)}
           ref={swipePage}
@@ -249,9 +272,9 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
               }
               selected={0}
               color="#333333"
-              lock={lock || false}
+             
               activeColor="#ffffff"
-              onTabScrollFinish={(isFinished) => handleFinishScroll(isFinished)}
+             
               animatedItem={{
                 backGroundColor: "#333333",
                 height: "2px",
@@ -263,7 +286,7 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
                   return (
                     <Tab.TabListItem
                       id={`tab2-${index}`}
-                      component={element.component}
+                      component={()=> element.name ==="islemler" ? <Transactions onFinish={(isfinished)=>handleFinishScroll(isfinished)} type={element.name}   /> : <Orders onFinish={(isfinished)=>handleFinishScroll(isfinished)} type={element.name}   />}
                       index={index}
                       addClass="tab-list"
                     >
@@ -278,7 +301,8 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
                       <div>
                         <p
                           style={{
-                            fontSize: "14px",
+                            fontSize: "13pt",
+    fontFamily: 'bw-mitga-bold'
                           }}
                         >
                           {element.title}
@@ -303,7 +327,30 @@ const Index = ({ activeCard,setActiveCard, myCards, addMoney, amount, setMoney, 
       >
         <AddMoney></AddMoney>
       </ActionSheet>
+      
+      <Modal
+      id="modal-2"
+      closeIcon={{
+        fontIcon: "lni lni-close",
+        fontSize: "24pt",
+      }}
+      transitionEnter="slideleft"
+      transitionGone="slideright"
+      className="modal-full"
+      title="Vertically centered modal dialog" 
+       wrapClassName="vertical-center-modal"
+  
+      visible={isAddCardVisible}
+      overlay={{
+        backGroundColor: "#333",
+        opacity: 0.5,
+      }}
+      close={() => setisAddCardVisible(false)}
+    >
+    <AddNewCard></AddNewCard>
+    </Modal>
     </div>
+   
   );
 };
 

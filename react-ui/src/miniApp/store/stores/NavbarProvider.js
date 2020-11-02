@@ -8,7 +8,7 @@ const initialState = {
   text: "İstanbul Kart",
   backgroundColor: "transparent",
   color: "#333",
-  textSize: "14pt",
+  textSize: "10pt",
 };
 export const NavbarProvider = ({ children }) => {
   const [navState, navDispatch] = useReducer(navBarReducer, initialState);

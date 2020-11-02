@@ -2,7 +2,6 @@
   width: 72%;
   position: relative;
   color: #f2f2f2;
-  padding: 5pt;
 }
 .rotate-cover {
   transform-style: preserve-3d;
@@ -13,7 +12,22 @@
   max-height: 100%;
   max-width: 100%;
 }
-
+.card-top {
+  display: flex;
+}
+.card-right-container {
+  flex: 1 1 60%;
+  width: 70%;
+  right: 0;
+  position: absolute;
+}
+.amount-card {
+  font-size: 28px;
+  left: 20px;
+  padding: 20px;
+  color: #ffc101;
+  font-family: "bw-mitga-bold";
+}
 .card-actions {
   bottom: -23px;
   opacity: 0;
@@ -50,8 +64,19 @@
   font-weight: bold;
   margin-bottom: 5px;
 }
+
 .card-number {
-  font-size: 10pt;
+  font-size: 12pt;
   font-weight: 400;
   letter-spacing: 1px;
+}
+.add-card-cover {
+  border-radius: 10px;
+  background: #fff;
+  /* padding: 10px; */
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

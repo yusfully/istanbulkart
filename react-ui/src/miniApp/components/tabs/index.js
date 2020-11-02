@@ -48,8 +48,6 @@ export const Tab = ({
   height,
   onTabChange,
   onProgressTab,
-  lock,
-  onTabScrollFinish,
 }) => {
   return (
     <TabProvider
@@ -72,11 +70,10 @@ export const Tab = ({
       <div className={`${carousel ? "carousel" : ""}  tab-cover`}>
         {children}
         <TabContent
-          onFinish={onTabScrollFinish}
+          
           defaultTab={defaultTab}
           onTabChange={onTabChange}
           carousel={carousel}
-          lock={lock}
           onProgressTab={onProgressTab}
           swipe={swipe ? swipe : null}
         />

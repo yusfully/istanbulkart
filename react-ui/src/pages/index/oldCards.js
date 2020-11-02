@@ -6,7 +6,7 @@ import CardTemplate from "./CardTemplate";
 import { connect } from "react-redux";
 import Transactions from "./Transactions";
 import Offers from "./Offers";
-import AddMoney from "./AddMoney";
+import AddMoney from ".";
 import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
 
 import "./index.scss";

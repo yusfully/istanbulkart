@@ -4,11 +4,7 @@ import { appReducer } from "../reducers/appReducer";
 const AppContext = createContext();
 
 const initialState = {
-  onLaunch: false,
-  onShow: false,
-  onHide: false,
-  onError: null,
-  onPageNotFound: null,
+  isScrolling:false
 };
 
 export const AppProvider = ({ children }) => {

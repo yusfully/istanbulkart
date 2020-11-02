@@ -2,6 +2,7 @@
 import React, { useState,useEffect } from "react";
 import {fetchCards, setActiveCard} from "../../redux/actions/cards.action"
 import {Route,useRouteMatch,useHistory} from "react-router-dom"
+import { PageProvider } from "./Provider";
 import { connect } from "react-redux";
 
 import Cards from "./Cards";
@@ -47,12 +48,13 @@ const Index = ({ fetchCards, myCards,setActiveCard }) => {
  let match=useRouteMatch()
 let history=useHistory()
   useEffect(() => {
-    setActiveCard("98a7f98enxf9q8wenf98nrx7",0)
+   
+    setActiveCard(myCards.cards[Object.keys(myCards.cards)[myCards.mainCard]].id,myCards.mainCard)
     if(!myCards.cards){
       fetchCards(data)
     }else{
  
-      history.push(match.path+"/"+myCards.cards[Object.keys(myCards.cards)[0]].id)
+      history.push(match.path+"/"+myCards.cards[Object.keys(myCards.cards)[myCards.mainCard]].id)
     }
    
   }, [])
@@ -61,9 +63,10 @@ let history=useHistory()
 
  
   return ( 
+    <PageProvider>
     <Route path={match.path+"/:id"}>
    { myCards.cards ? <Cards/> : <div className="loading">loading</div>}
-    </Route>
+    </Route></PageProvider>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { Fragment, Children, useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useCollapseContext } from "./Provider";
 
 const Collapsable = ({
@@ -12,14 +12,13 @@ const Collapsable = ({
   triggerElement,
   children,
 }) => {
-  const { collapseState, dispatchCollapse } = useCollapseContext();
+  const { collapseState } = useCollapseContext();
 
   useEffect(() => {
+  
     onChange && onChange(collapseState.isOpened);
   }, [collapseState.isOpened]);
-  const handleCollapsed = () => {
-    onOpened();
-  };
+
   const renderChildren = (children) => {
     const elements = React.Children.map(children, (child) => {
       if (child.type) {

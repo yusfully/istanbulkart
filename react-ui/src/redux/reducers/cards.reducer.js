@@ -3,8 +3,10 @@ import {
   CARDS_DELETE,
   CARDS_ADD,
   SET_ACTIVE_CARD,
+  CHANGE_MAIN_CARD
 } from "../actionTypes";
-import _ from 'lodash';
+import {sortCard} from "./helpers"
+
 
 
 const INITIAL_STATE = {
@@ -12,6 +14,7 @@ const INITIAL_STATE = {
   error: null,
   activeCard: {id:"98a7f98enxf9q8wenf98nrx7",
 index:0},
+mainCard:0
 };
 
 const cardsReducer = (state = INITIAL_STATE, action) => {
@@ -20,12 +23,18 @@ const cardsReducer = (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        cards: _.mapKeys(action.payload, "id"),
+        cards: sortCard(action.payload),
       };
+      case CHANGE_MAIN_CARD:
+
+        return {
+          ...state,
+          mainCard: action.payload,
+        };
     case CARDS_ADD:
       return {
         ...state,
-        cards: null,
+        cards: action.payload,
       };
     case SET_ACTIVE_CARD:
    
