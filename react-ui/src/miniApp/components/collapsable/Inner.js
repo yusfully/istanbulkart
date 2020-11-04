@@ -15,6 +15,8 @@ const Inner = ({ isOpened, children }) => {
   }, [collapseState.isOpened]);
 
   const handleOpen = () => {
+
+    console.log(innerInner.current.offsetHeight)
     let height = innerInner.current.offsetHeight;
     TweenMax.to(innerContainer.current, 0.5, {
       height: height + "px",

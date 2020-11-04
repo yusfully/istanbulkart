@@ -16,7 +16,7 @@ const CardTemplate = ({ amount, name, id, number, isMain }) => {
             name="plus"
             lineCap="round"
             join="round"
-            stroke={"#63636d"}
+            stroke={"#54420a"}
             strokeWidth={"20"}
             size="50"
           ></SvgIcon>

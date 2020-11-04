@@ -28,7 +28,10 @@ class FieldComp extends React.Component {
   handleClick = (e) => {};
 
   handleChange = (e) => {
+    debugger
 let value=e.target.value
+
+console.log(value,this.state)
 if(this.props.validation.max && value.length>this.props.validation.max){
   this.input.current.value =this.state.value
   return 

@@ -77,7 +77,7 @@ const topPart = useRef()
   useEffect(() => {
    
     setLimit(
-      130
+      80
     );
   }, []);
 
@@ -122,6 +122,7 @@ const topPart = useRef()
           <CardTemplate
             activeCard={active}
             index={index}
+           
             cardPos={cardProg}
             name={myCards[element].name}
             number={myCards[element].number}
@@ -187,6 +188,9 @@ let rate=pos/scrollDragLimit
 let posTotal=topPartHeight+pos
     topPart.current.style.height=posTotal+"px"
 
+
+    
+    cardsDispatch({type:"changeHeight",height:-pos-20})
  }
 
  const handleAddCard=()=>{
@@ -205,24 +209,22 @@ let posTotal=topPartHeight+pos
 
   return (
     <div className="transaction-list">
-
-    <div onClick={()=>handleAddCard()} className="add-card">
-    <div className="title">
-   <h3 className="title-big">Kartlarım</h3>
-
-    </div>
-    <div className="add-card-action">
-    <span className="add-card-action-label">KART EKLE</span>
-    <SvgIcon
-    name="plus"
-    stroke={"#bb931b"}
-    strokeWidth={"25"}
-    size={16}
-    lineCap="rounded"
-    join="rounded"
-  ></SvgIcon>
-    </div>
-    </div>
+  <div onClick={()=>handleAddCard()} className="add-card">
+  <div className="cards-count">
+ <p ><span className="active-card-num">{activeCard.index+1}</span><span className="total-card-num">{Object.keys(myCards).length}</span></p>
+  </div>
+  <div className="add-card-action">
+  <span className="add-card-action-label">KART EKLE</span>
+  <SvgIcon
+  name="plus"
+  stroke={"#54420a"}
+  strokeWidth={"25"}
+  size={16}
+  lineCap="rounded"
+  join="rounded"
+></SvgIcon>
+  </div>
+  </div>
     <div ref={topPart} className="card-list-cover"> 
    
    {myCards && <Carousel
@@ -248,16 +250,22 @@ let posTotal=topPartHeight+pos
   
     {renderCards()}
   </Carousel>}
- 
+
+
+  
+  </div>
   <div className="card-amount-cover">
+  <div className="amount">
+  <small>BAKİYE</small>
+<div className="amount-cover"><div  className="amount">{myCards[activeCard.id].amount}</div><span class="price-icon">₺</span></div></div>
 <div
         onClick={handleAddMoney}
          className="action">
         PARA YÜKLE
         </div></div>
-  
-  </div>
 
+
+  
       <div className="transaction-list-cover">
 
         <SwipablePage

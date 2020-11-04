@@ -4,13 +4,15 @@ const PageContext = createContext();
 export const ActionTypes = {
     isFinished: "isFinished",
     isLocked: "isLocked",
-    lockCards:"lockCards"
+    lockCards:"lockCards",
+    changeHeight:"changeHeight"
 };
 
 const initialState = {
   isFinished: false,
   isLocked: true,
   lockCards:false,
+  height:0
 };
 
 const reducer = (state, action) => {
@@ -21,6 +23,11 @@ const reducer = (state, action) => {
         ...state,
         isFinished: action.isFinished,
       };
+      case ActionTypes.changeHeight:
+        return {
+          ...state,
+          height: action.height,
+        };
     case ActionTypes.isLocked:
        
       return {

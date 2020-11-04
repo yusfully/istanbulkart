@@ -96,21 +96,20 @@ span.amount {
 }
 .card-amount-cover .action {
   padding: 15px 25px;
-  /* background: #ffffff; */
-  border-radius: 10px;
+  border-radius: 15px;
   position: relative;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 700;
-  width: 72vw;
+  border: 1.5pt solid;
   display: flex;
   justify-content: center;
-  background: #fff;
 }
 .tab-list-cover .tab-item.tab-active {
   opacity: 1;
 }
 .card-list-cover .tab-list-cover.standart-tab-list {
   pointer-events: none;
+  display: none;
 }
 .tab-list-cover .tab-item {
   opacity: 0.5;
@@ -130,14 +129,18 @@ span.amount {
   background: transparent;
   transition: all 0.25s ease-out;
   left: 0%;
-  border-radius: 20px;
+  border-radius: 15px;
   box-shadow: 0px 10px 10px #00000033;
 }
 .action {
   display: flex;
   align-items: center;
 }
-.card-amount small {
+.amount {
+  display: flex;
+  flex-direction: column;
+}
+.card-amount-cover small {
   font-size: 10px;
   font-weight: 800;
   text-align: left;
@@ -145,7 +148,6 @@ span.amount {
 }
 span.price-icon {
   font-size: 18px;
-  top: -10px;
   position: relative;
   left: 5px;
 }
@@ -160,7 +162,9 @@ span.price-icon {
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  justify-content: center;
+}
+.amount-cover {
+  display: flex;
 }
 .icon-tab-list {
   position: relative;
@@ -186,7 +190,7 @@ span.price-icon {
   margin-left: 5px;
 }
 .transaction-list-cover .tab-item-cover {
-  padding: 10px;
+  padding: 10px 0;
 }
 .options.drop-down {
   position: absolute;
@@ -215,8 +219,9 @@ span.price-icon {
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 0;
   align-items: center;
+  margin-bottom: -10px;
 }
 .add-card-action {
   display: flex;
@@ -227,8 +232,19 @@ span.price-icon {
   border-radius: 20px;
   font-size: 7pt;
   font-family: "bw-mitga-bold";
-  color: #987818;
+  color: #54420a;
   /* border: 1px solid; */
+}
+span.active-card-num:after {
+  content: "/";
+  margin-right: 5px;
+  margin-left: 5px;
+}
+span.active-card-num {
+  font-family: "bw-mitga-bold";
+}
+.cards-count {
+  font-size: 0.8rem;
 }
 .pull-options {
   width: 100%;

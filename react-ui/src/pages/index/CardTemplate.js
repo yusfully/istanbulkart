@@ -7,7 +7,6 @@ import { TweenMax,Linear } from "gsap/all";
 import "./cardTemplate.scss";
 
 const CardTemplate = ({
-  amount,
   name,
   id,
   number,
@@ -15,6 +14,7 @@ const CardTemplate = ({
   cardPos,
   index,
   activeCard,
+  marginBottom
 }) => {
   const [style, setStyle] = useState({});
 const history=useHistory()
@@ -190,7 +190,9 @@ history.push(`${match.url}/${type}`)
   const handleCardAction = (id, type) => {};
 
   return ( <Fragment> 
-    <div ref={optionsCover} className="rotate-cover">
+    <div ref={optionsCover} style={{
+      paddingBottom:`${cardsState.height}px`
+    }} className="rotate-cover">
     <div ref={opt} className="card-back-wrap">
      
     <div  className="pull-options">
@@ -259,9 +261,7 @@ join="rounded"
       
 
         <div className="card-top">
-        <div className="amount-card">
-          
-        {amount}<span class="price-icon">₺</span></div>
+       
           <div className="card-right-container">
             <div
               style={{
