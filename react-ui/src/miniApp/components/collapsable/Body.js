@@ -22,7 +22,7 @@ const Body = ({ children, action,close,index }) => {
   };
   const handleTouchEnd = (e) => {
     
-    if (action && collapseState.scrolling) {
+    if ( collapseState.scrolling) {
       
       dispatchCollapse({
         type: "onOpened",

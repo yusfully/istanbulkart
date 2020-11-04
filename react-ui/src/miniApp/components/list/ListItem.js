@@ -102,9 +102,9 @@ const ListItem = ({
       <Collapse  onChange={(e) => handleChangeCollapse(e)}>
         <Collapse.Body close={closeCollapse} >{renderListItem(text)}</Collapse.Body>
         {React.Children.map(children, (child) => {
-          if (child.type !== undefined && child.type.name === "CollapseList") {
+        
             return <Collapse.Inner>{child.props.children} </Collapse.Inner>;
-          }
+          
         })}
       </Collapse>
     );
