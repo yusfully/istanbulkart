@@ -49,12 +49,12 @@ const Index = ({ fetchCards, myCards,setActiveCard }) => {
 let history=useHistory()
   useEffect(() => {
    
-    setActiveCard(myCards.cards[Object.keys(myCards.cards)[myCards.mainCard]].id,myCards.mainCard)
+    
     if(!myCards.cards){
       fetchCards(data)
     }else{
  
-      history.push(match.path+"/"+myCards.cards[Object.keys(myCards.cards)[myCards.mainCard]].id)
+      history.push(match.path+"/"+myCards.mainCard)
     }
    
   }, [])

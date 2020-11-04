@@ -1,11 +1,13 @@
-import React from "react";
+import React,{useEffect} from "react";
 import NavigationPortal from "../../components/pager/NavigationPortal";
-import { Route } from "react-router-dom";
+import { Route,useHistory } from "react-router-dom";
 import Index from "../../../pages/index"
 
 const AppInner = () => {
+let history=useHistory()
+useEffect(() => {
 
-
+}, [])
   return (
     <div className="app-inner">
       <NavigationPortal> </NavigationPortal>

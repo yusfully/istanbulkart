@@ -109,7 +109,8 @@ export const TabContent = ({
   swipe,
   carousel,
   onTabChange,
-  onProgressTab
+  onProgressTab,
+  lock
 }) => {
   const { tabState, dispatchTabSwipe } = useTabContext();
 
@@ -229,6 +230,7 @@ export const TabContent = ({
           onSwiping={onSwipping}
           onTouchStart={handleSwipeStart}
           snapSwipe={swipe}
+          lock={lock}
         >
           <div
             style={{

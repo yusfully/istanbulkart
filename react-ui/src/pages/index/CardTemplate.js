@@ -1,7 +1,9 @@
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import { ReactComponent as Logo } from "../../assets/images/istanbulkart-logo.svg";
-import { ReactComponent as IBBLogo } from "../../assets/images/ibb-logo.svg";
+import { useCardsContext } from "./Provider";
 import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
+import { useRouteMatch, useHistory } from "react-router-dom";
+import { TweenMax,Linear } from "gsap/all";
 import "./cardTemplate.scss";
 
 const CardTemplate = ({
@@ -14,13 +16,29 @@ const CardTemplate = ({
   index,
   activeCard,
 }) => {
-  const [style, setStyle] = useState({
+  const [style, setStyle] = useState({});
+const history=useHistory()
+const match=useRouteMatch()
+  const { cardsState, cardsDispatch}=useCardsContext()
+
+  const [cardOptPos, setcardOptPos] = useState(0)
+  const [isOptOpened, setOptOpened] = useState(false)
+  useEffect(() => {
+    if(cardOptPos===0){
+      cardsDispatch({type:"lockCards",lockCards:false})
+      opt.current.style.display="none"
+    }else{
+      cardsDispatch({type:"lockCards",lockCards:true})
+      opt.current.style.display="flex"
+    }
    
-  });
+  }, [cardOptPos])
+
+ 
  useEffect(() => {
   
-  console.log(activeCard,pos.current,index)
 
+ 
   if(activeCard.current===index){
     setStyle({
       transform: "scale(1)",
@@ -29,31 +47,106 @@ const CardTemplate = ({
     })
   }
  }, [])
-
+const pullOptions = useRef()
   const pos = useRef();
+  const opt = useRef();
   const shadowref = useRef();
+  const optionsCover = useRef()
+  const firstTouch = useRef()
+
+const closeOpt=()=>{
+  let object = {
+    y: cardOptPos,
+  };
+  setOptOpened(false);
+ 
+  TweenMax.to(object, 0.25, {
+    y: 0,
+    ease: Linear.easeOut,
+    onUpdate: function () {
+      setcardOptPos(object.y);
+    },
+  });
+}
+const openOpt=()=>{
+  
+    let object = {
+      y: cardOptPos,
+    };
+    setOptOpened(true);
+   
+    TweenMax.to(object, 0.25, {
+      y: -50,
+      ease: Linear.easeOut,
+      onUpdate: function () {
+        setcardOptPos(object.y);
+      },
+    });
+  
+}
+
+  const handleOptionsMove=(e)=>{
+  
+    let diff = e.touches[0].clientY - firstTouch.current;
+    firstTouch.current=e.touches[0].clientY
+    let newPos = cardOptPos + diff;
+
+if(newPos<=-50){
+  newPos=-50
+}
+else if(newPos>=0){
+  newPos=0
+}
+     setcardOptPos(newPos)
+  }
+  const handleOptionsStart=(e)=>{
+
+    firstTouch.current=e.touches[0].clientY
+    
+    cardsDispatch({type:"lockCards",lockCards:true})
+
+
+  }
+
+  const handleOptionsEnd=(e)=>{
+   if(isOptOpened){
+     closeOpt()
+   }else{
+    openOpt()
+   }
+    
+  }
+
+  const handleCardOptions=(type)=>{
+    
+history.push(`${match.url}/${type}`)
+  }
   if (cardPos.current) {
     
     let posStyle = {};
     let scale;
-    let rotatiton;
+    let rotationX;
+    let rotationY;
     let transformOrigin;
     let opacity;
     let shadow;
+
+
     const { prev, next, progress, delta } = cardPos.current;
 
-    rotatiton = delta * 0.5;
-    if (rotatiton > 20) {
-      rotatiton = 20;
-    } else if (rotatiton < -20) {
-      rotatiton = -20;
+    rotationX = delta * 0.5;
+    rotationY=cardOptPos
+    if (rotationX > 20) {
+      rotationX = 20;
+    } else if (rotationX < -20) {
+      rotationX = -20;
     }
 
     if (next === prev && activeCard.current === index) {
       scale = "1";
       opacity = "1";
-      shadow = 10;
-      rotatiton=0
+      shadow = 10- cardOptPos/5;
+      rotationX=0
       transformOrigin = "center";
     } else {
       if (next === index) {
@@ -88,21 +181,71 @@ const CardTemplate = ({
       }
     }
 
-    posStyle.transform = `scale(${scale}) rotateY(${rotatiton}deg)`;
+    posStyle.transform = `scale(${scale}) rotateY(${rotationX}deg)  rotateX(${-rotationY}deg)  translate(0px, ${cardOptPos/1.5}%)`;
     posStyle.opacity = `${opacity}`;
     pos.current = posStyle;
-    shadowref.current = { boxShadow: `0px  ${shadow}px 10px #0000004a` };
+    shadowref.current = { boxShadow: `0px  ${shadow}px ${10-cardOptPos/4}px #0000004a` };
   }
 
   const handleCardAction = (id, type) => {};
 
-  return (
-    <div className="rotate-cover">
+  return ( <Fragment> 
+    <div ref={optionsCover} className="rotate-cover">
+    <div ref={opt} className="card-back-wrap">
+     
+    <div  className="pull-options">
+    <div className="pull-options-inner">
+<div className="card-options">
+<div onTouchEnd={
+  ()=>handleCardOptions("setMain")
+} className="card-option">
+<SvgIcon
+name="flama"
+stroke={"#333333"}
+strokeWidth={"20"}
+size={18}
+lineCap="rounded"
+join="rounded"
+></SvgIcon>
+</div>
+<div onTouchEnd={
+  ()=>handleCardOptions("delete")
+} className="card-option">
+<SvgIcon
+
+name="trash"
+stroke={"#333333"}
+strokeWidth={"20"}
+size={20}
+lineCap="rounded"
+join="rounded"
+></SvgIcon>
+</div>
+</div>
+    </div>
+   
+
+
+
+    </div>
+    </div>
+      
       <div style={pos.current ? pos.current : style} className="card">
-        <div
-          style={shadowref.current && shadowref.current}
-          className="shadow"
-        ></div>
+      <div onTouchMove={
+        (e)=>handleOptionsMove(e)
+      } 
+      onTouchStart={
+       (e)=>handleOptionsStart(e)
+     }
+     onTouchEnd={(e)=>handleOptionsEnd(e)}
+     ref={pullOptions} className="pull-icon">
+
+     </div>
+       <span
+      style={shadowref.current && shadowref.current}
+       className="shadow">
+      
+      </span>
 
         <div
           style={{
@@ -111,7 +254,9 @@ const CardTemplate = ({
             borderRadius: "20pt",
             height: "100%",
           }}
-        >
+        > 
+        
+      
 
         <div className="card-top">
         <div className="amount-card">
@@ -148,36 +293,11 @@ const CardTemplate = ({
           </div>
         </div>
       </div>
-      {isMain
-        ? activeCard.current === index && (
-            <div
-              style={{
-                position: "absolute",
-                opacity: `${1}`,
-                transition: "all 0.25s ease-out",
-              }}
-              className="card-actions"
-            >
-              <div
-                onClick={(id) => handleCardAction(id, "main")}
-                className="action"
-              >
-                <div className="circle-button">
-                  <SvgIcon
-                    name="flama"
-                    stroke={"#333333"}
-                    strokeWidth={"20"}
-                    size={16}
-                    lineCap="rounded"
-                    join="rounded"
-                  ></SvgIcon>
-                </div>
-              </div>
-             
-            </div>
-          )
-        : null}
+    
+
+       
     </div>
+    </Fragment>
   );
 };
 

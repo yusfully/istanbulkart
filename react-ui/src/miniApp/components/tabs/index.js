@@ -48,6 +48,7 @@ export const Tab = ({
   height,
   onTabChange,
   onProgressTab,
+  lock
 }) => {
   return (
     <TabProvider
@@ -74,6 +75,7 @@ export const Tab = ({
           defaultTab={defaultTab}
           onTabChange={onTabChange}
           carousel={carousel}
+          lock={lock}
           onProgressTab={onProgressTab}
           swipe={swipe ? swipe : null}
         />

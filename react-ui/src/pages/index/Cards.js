@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import Carousel from "../../miniApp/components/carousel/carousel";
 import { Tab } from "../../miniApp/components/tabs";
-import { useRouteMatch, useHistory } from "react-router-dom";
+import { useRouteMatch, useHistory , Route} from "react-router-dom";
 import CardTemplate from "./CardTemplate";
-import CardTemplateAdd from "./CardTemplateAdd";
 import { connect } from "react-redux";
 import Transactions from "./Transactions";
 import Orders from "./Orders";
 import Modal from "../../miniApp/components/modal/Modal"
+import Portal from "../../miniApp/components/pager/Portal"
 import { addMoney, setMoney } from "../../redux/actions/money.action";
 import SwipablePage from "../../miniApp/components/swipablepage/swipablepage";
 import AddMoney from "./AddMoney";
@@ -19,7 +19,7 @@ import { useCardsContext } from "./Provider";
 import "./index.scss";
 import AddNewCard from "./AddNewCard";
 import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
-import { TabContent } from "../../miniApp/components/tabs/elements";
+import CardOptionsDialogs from "./CardOptionsDialogs";
 
 const moneyData = {
   5: {
@@ -232,6 +232,7 @@ let posTotal=topPartHeight+pos
     defaultCard={activeCard}
     type="dots"
     shape="circle"
+    lock={cardsState.lockCards}
     onProgressSlide={(progress, next, prev, delta) =>
       handleCardProgress(progress, next, prev, delta)
     }
@@ -349,6 +350,22 @@ let posTotal=topPartHeight+pos
     >
     <AddNewCard></AddNewCard>
     </Modal>
+    <Route path={match.path+"/delete"}>
+    <Portal
+    className="modal-main"
+    id={"delete"}
+    type={"modal"}
+  >
+    <CardOptionsDialogs type="delete"></CardOptionsDialogs></Portal>
+    </Route>
+    <Route path={match.path+"/setMain"}>
+    <Portal
+    className="modal-main"
+    id={"main"}
+    type={"modal"}
+  >
+    <CardOptionsDialogs type="setMain"></CardOptionsDialogs></Portal>
+    </Route>
     </div>
    
   );

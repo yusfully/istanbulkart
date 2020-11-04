@@ -230,6 +230,15 @@ span.price-icon {
   color: #987818;
   /* border: 1px solid; */
 }
+.pull-options {
+  width: 100%;
+  bottom: 0;
+  z-index: -1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  /* transform: translate3d(0px, 0px, 3px); */
+}
 span.add-card-action-label {
   margin-left: 5px;
 }
@@ -265,4 +274,49 @@ span.add-card-action-label {
 
 .swipable-list .tab-list-cover.standart-tab-list {
   border-bottom: 1px solid #e3e3e6;
+}
+.pull-icon {
+  width: 30pt;
+  height: 3pt;
+  background: #333;
+  opacity: 0.3;
+  bottom: -10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0px);
+}
+.pull-options-inner {
+  /* display: flex; */
+  width: 100%;
+}
+.card-options {
+  display: flex;
+  justify-content: center;
+}
+.overlay {
+  background: #333;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0.6;
+}
+.dialog-content {
+  padding: 20px;
+  background: #fff;
+  z-index: 99;
+  border-radius: 20px;
+  font-size: 10pt;
+  text-align: center;
+}
+.card-opt-dialog-actions {
+  display: flex;
+  margin-top: 20px;
+}
+.bordered.radius.button.filled.button-container.btn-block.center.btn-icon-right {
+  padding: 10px;
+  margin: 0;
+}
+.bordered.grey.radius.button.filled .btn {
+  background: #eaeaea;
+  color: #888383;
 }

@@ -17,6 +17,7 @@ const Carousel = ({
   customSize,
   dotActiveColor,
   dotColor,
+  lock
 }) => {
   const tabitem = useRef();
   const [size, setSize] = useState();
@@ -65,6 +66,7 @@ const Carousel = ({
         direction={direction || "x"}
         swipe={withArrow ? false : swipe}
         carousel
+        lock={lock}
       >
         <Tab.TabList ref={tabitem} carousel>
           {children.map((element, index) => {

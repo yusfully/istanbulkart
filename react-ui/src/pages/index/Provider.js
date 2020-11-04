@@ -4,11 +4,13 @@ const PageContext = createContext();
 export const ActionTypes = {
     isFinished: "isFinished",
     isLocked: "isLocked",
+    lockCards:"lockCards"
 };
 
 const initialState = {
   isFinished: false,
   isLocked: true,
+  lockCards:false,
 };
 
 const reducer = (state, action) => {
@@ -25,7 +27,12 @@ const reducer = (state, action) => {
         ...state,
         isLocked: action.isLocked,
       };
-    
+      case ActionTypes.lockCards:
+       
+        return {
+          ...state,
+          lockCards: action.lockCards,
+        };
    
     default:
       return state;

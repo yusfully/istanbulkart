@@ -1,6 +1,6 @@
 import React from "react";
 import SmoothScrollbar from "smooth-scrollbar";
-import Scrollbar from "react-smooth-scrollbar";
+import Scrollbar from "./Scrollbar";
 import { DisableScrollPlugin } from "./DisableDirection";
 import { EdgeEasingPlugin } from "../slider/Momentum";
 import { MobilePlugin } from "./Mobile";

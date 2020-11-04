@@ -3,6 +3,7 @@ import {
   CARDS_DELETE,
   CARDS_ADD,
   SET_ACTIVE_CARD,
+  CHANGE_MAIN_CARD
 } from "../actionTypes";
 
 export const fetchCards = (cards) => ({
@@ -21,4 +22,8 @@ export const setActiveCard = (id,index) => ({
   type: SET_ACTIVE_CARD,
   id: id,
   index:index
+});
+export const setMainCard = (id) => ({
+  type: CHANGE_MAIN_CARD,
+  id: id,
 });

@@ -4,7 +4,6 @@ import { TabbarMain } from "./miniApp/layers/tabbar";
 import Navbar from "./miniApp/layers/navbar/index";
 import AppInner from "./miniApp/layers/app/index";
 import "./App.css";
-import Callback from "./pages/callbback/Callback";
 
 
 const App = ({ data }) => {
@@ -19,9 +18,7 @@ const App = ({ data }) => {
       <Route path="/">
         <AppInner></AppInner>
       </Route>
-      <Route path="/callback">
-        <Callback></Callback>
-      </Route>
+      
       <Navbar></Navbar>
 
       <TabbarMain props={tabBar}></TabbarMain>

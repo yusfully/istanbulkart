@@ -177,6 +177,7 @@ class Slider extends React.Component {
     }));
   };
   componentDidUpdate(prevProps, prevState) {
+    
     if (prevState.currentPage !== this.state.currentPage) {
       this.props.onCurrentTabChanged &&
         this.props.onCurrentTabChanged(
@@ -200,7 +201,7 @@ class Slider extends React.Component {
             speed: 0.5,
           },
           filterEvent: {
-            blacklist: this.props.snapSwipe ? [] : [/touch/],
+            blacklist: this.props.lock ? [/touch/] : this.props.snapSwipe  ? [] : [/touch/] ,
           },
           snapswipe: {
             size: {
@@ -216,6 +217,7 @@ class Slider extends React.Component {
         onScroll={(status, scrollbar) => this.scroll(status, scrollbar)}
         damping={0.3}
         delegateTo={this.props.target}
+       
       >
         <div
           className={`scrol-container ${this.props.className}`}
