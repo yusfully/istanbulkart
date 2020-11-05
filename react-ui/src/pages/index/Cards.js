@@ -171,9 +171,7 @@ const topPart = useRef()
      
 
       history.push(Object.keys(myCards)[index]);
-    } else {
-      history.push(match.path + "newcard");
-    }
+    } 
   };
 
   const handleCardProgress = (next, prev, progress, delta) => {
