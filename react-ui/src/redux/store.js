@@ -14,7 +14,7 @@ const enhancers = [applyMiddleware(...middlewares)];
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["auth", "myCards"],
+  whitelist: ["auth", "myCards","transactions"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
