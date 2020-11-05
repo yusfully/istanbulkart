@@ -13,9 +13,9 @@ import _ from 'lodash';
 const INITIAL_STATE = {
   cards: null,
   error: null,
-  activeCard: {id:"98a7f98enxf9q8wenf98nrx7",
+  activeCard: {id:"askugyfdn92378rtyx9238yrx92",
 index:0},
-mainCard:"98a7f98enxf9q8wenf98nrx7"
+mainCard:"askugyfdn92378rtyx9238yrx92"
 };
 
 const cardsReducer = (state = INITIAL_STATE, action) => {
