@@ -47,19 +47,21 @@ const data = [
 const Index = ({ fetchCards, myCards,setActiveCard }) => {
  let match=useRouteMatch()
 let history=useHistory()
-  useEffect(() => {
-   
-    
-    if(!myCards.cards){
-      fetchCards(data)
-    }else{
- 
-      history.push(match.path+"/"+myCards.mainCard)
-    }
-   
-  }, [])
 
 
+useEffect(() => {
+  if(!myCards.cards){
+    fetchCards(data)
+  }
+}, [])
+
+useEffect(() => {
+
+  if(myCards.cards){
+
+    history.push(match.path+"/"+myCards.mainCard)
+  }
+}, [myCards.cards])
 
  
   return ( 

@@ -21,6 +21,11 @@ const handleDelete=()=>{
   }
   history.goBack()
 }
+
+const handleBack=()=>{
+ 
+  history.goBack()
+}
   return (
     <div style={{
       display:"flex",
@@ -52,6 +57,7 @@ type="button"
               pos: "right",
             }}
             uiStyle="bordered"
+            onClick={()=>handleBack()}
           />
           <Button
 type="button"

@@ -77,7 +77,7 @@ const topPart = useRef()
   useEffect(() => {
    
     setLimit(
-      152
+      150
     );
   }, []);
 
