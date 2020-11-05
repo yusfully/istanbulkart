@@ -160,7 +160,9 @@ const topPart = useRef()
     });
   };
   const handleCardChange = (index) => {
-    
+    if(index<0){
+      index=0
+    }
     setActiveCard(Object.keys(myCards)[index],index);
 
   
