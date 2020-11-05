@@ -150,7 +150,7 @@ const SwipablePage = forwardRef(({ children, lock, limit,onDrag }, ref) => {
         <div
          
           ref={contentMain}
-          className={`${isDragging ? "dragging" : ""} swipable-page-main-cover`}
+          className={`${isOpened ? "dragging" : ""} swipable-page-main-cover`}
         >
           <div className="swipable-relative">
             <div
