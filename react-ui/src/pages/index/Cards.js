@@ -346,7 +346,7 @@ let posTotal=topPartHeight+pos
       transitionEnter="slideleft"
       transitionGone="slideright"
       className="modal-full"
-      title="Vertically centered modal dialog" 
+      title="YENİ KART EKLE" 
        wrapClassName="vertical-center-modal"
   
       visible={isAddCardVisible}
