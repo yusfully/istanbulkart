@@ -7,13 +7,13 @@ const Body = ({ children, action,close,index }) => {
   const touchStart = useRef()
 
   const handleTouchStart = (e) => {
-    
+  
     touchStart.current=e.touches[0].clientY
  
   };
 
   const handleTouchMove = (e) => {
-
+    
    if(e.touches[0].clientY-touchStart.current>5 ||  e.touches[0].clientY-touchStart.current<-5){
     dispatchCollapse({type:"scrolling",scrolling:false})
    }else{
@@ -21,13 +21,14 @@ const Body = ({ children, action,close,index }) => {
    }
   };
   const handleTouchEnd = (e) => {
-    
-    if ( collapseState.scrolling) {
-      
+  
+    if (collapseState.scrolling) {
+     
       dispatchCollapse({
         type: "onOpened",
       });
     } else {
+      
       e.preventDefault();
       
       
@@ -35,6 +36,9 @@ const Body = ({ children, action,close,index }) => {
     dispatchCollapse({type:"scrolling",scrolling:true})
   };
 
+  useEffect(() => {
+  
+  }, [collapseState])
   useEffect(() => {
 
     if(close)
@@ -47,7 +51,7 @@ const Body = ({ children, action,close,index }) => {
   }, [close])
   return (
     <div
-    
+  
       onTouchStart={(e) => handleTouchStart(e)}
       onTouchMove={(e) => handleTouchMove(e)}
       onTouchEnd={(e) => handleTouchEnd(e)}

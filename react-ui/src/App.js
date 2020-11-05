@@ -11,8 +11,11 @@ const App = ({ data }) => {
   const { pages, tabBar, window: windowConfig } = data;
 
   useEffect(() => {
-   
+    window.addEventListener("resize", (e) => handleResize(e));
   }, [])
+  const handleResize=(e)=>{
+console.log(e)
+  }
   return (
     <Fragment>
       <Route path="/">

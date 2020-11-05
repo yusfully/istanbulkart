@@ -236,7 +236,7 @@ export const TabContent = ({
             style={{
               display: "flex",
               flexWrap: `${tabState.direction === "y" ? "wrap" : "nowrap"}`,
-              minHeight: `${tabState.height ? tabState.height + "px" : "100%"}`,
+              minHeight: `${tabState.height ? tabState.height+20 + "px" : "100%"}`,
               minWidth: `${
                 tabState.width * tabState.totalElement +
                 (window.innerWidth - tabState.width)

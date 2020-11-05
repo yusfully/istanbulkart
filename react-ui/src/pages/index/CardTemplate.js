@@ -37,7 +37,7 @@ const match=useRouteMatch()
  
  useEffect(() => {
   
-
+stableHeight.current.style.height=stableHeight.current.offsetHeight+"px"
  
   if(activeCard.current===index){
     setStyle({
@@ -51,6 +51,7 @@ const pullOptions = useRef()
   const pos = useRef();
   const opt = useRef();
   const shadowref = useRef();
+  const stableHeight = useRef();
   const optionsCover = useRef()
   const firstTouch = useRef()
 
@@ -233,28 +234,23 @@ join="rounded"
     </div>
       
       <div style={pos.current ? pos.current : style} className="card">
-      <div onTouchMove={
-        (e)=>handleOptionsMove(e)
-      } 
-      onTouchStart={
-       (e)=>handleOptionsStart(e)
-     }
-     onTouchEnd={(e)=>handleOptionsEnd(e)}
-     ref={pullOptions} className="pull-icon">
-
-     </div>
-       <span
+      
+         <span
       style={shadowref.current && shadowref.current}
        className="shadow">
       
       </span>
+     
+    
 
         <div
+        ref={stableHeight}
           style={{
             flexDirection: "column",
-            backgroundColor: "#161517",
             borderRadius: "20pt",
-            height: "100%",
+            height: "100%",position: "absolute",
+            width: "100%",
+            bottom: "0"
           }}
         > 
         
@@ -267,7 +263,7 @@ join="rounded"
               style={{
                 position: "relative",
     display: "flex",
-    justifyContent:" flex-end",
+    justifyContent:" flex-start",
     paddingRight: "20px"
               }}
             >
@@ -275,6 +271,16 @@ join="rounded"
             </div>
          
           </div>
+          <div onTouchMove={
+            (e)=>handleOptionsMove(e)
+          } 
+          onTouchStart={
+           (e)=>handleOptionsStart(e)
+         }
+         onTouchEnd={(e)=>handleOptionsEnd(e)}
+         ref={pullOptions} className="dot dot">
+    <span></span>
+         </div>
           </div>
          
           

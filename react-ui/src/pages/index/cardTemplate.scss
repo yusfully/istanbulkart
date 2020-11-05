@@ -2,7 +2,9 @@
   width: 72%;
   position: relative;
   color: #f2f2f2;
+  overflow: hidden;
   margin-top: 15px;
+  padding-bottom: 20px;
 }
 .rotate-cover {
   transform-style: preserve-3d;
@@ -17,9 +19,9 @@
   display: flex;
 }
 .card-right-container {
-  flex: 1 1 60%;
+  flex: 1 1 auto;
   width: 70%;
-  right: 0;
+  left: 0;
   position: absolute;
 }
 .card-amount-cover {

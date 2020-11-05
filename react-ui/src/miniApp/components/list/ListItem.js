@@ -84,7 +84,7 @@ const ListItem = ({
     }
   };
   useEffect(() => {
-
+console.log(listState)
   if(listState.prev===index){
     setcloseCollapse(true)
   }else{
@@ -102,7 +102,7 @@ const ListItem = ({
       <Collapse  onChange={(e) => handleChangeCollapse(e)}>
         <Collapse.Body close={closeCollapse} >{renderListItem(text)}</Collapse.Body>
         {React.Children.map(children, (child) => {
-        
+         
             return <Collapse.Inner>{child.props.children} </Collapse.Inner>;
           
         })}

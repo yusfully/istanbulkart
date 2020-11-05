@@ -336,3 +336,34 @@ span.add-card-action-label {
   background: #eaeaea;
   color: #888383;
 }
+.dot.dot {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+}
+.dot.dot span {
+  position: relative;
+  width: 5px;
+  height: 5px;
+  background: #a9a2a2;
+  border-radius: 100%;
+  opacity: 0.6;
+}
+.dot.dot span:after,
+.dot.dot span:before {
+  content: "";
+  position: relative;
+  width: 5px;
+  height: 5px;
+  display: block;
+  border-radius: 100%;
+  background: #a9a2a2;
+}
+.dot.dot span:before {
+  margin-bottom: 4px;
+  margin-top: 8px;
+}

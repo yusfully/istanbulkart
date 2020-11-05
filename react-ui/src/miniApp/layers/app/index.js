@@ -1,15 +1,17 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useRef} from "react";
 import NavigationPortal from "../../components/pager/NavigationPortal";
 import { Route,useHistory } from "react-router-dom";
 import Index from "../../../pages/index"
 
 const AppInner = () => {
-let history=useHistory()
-useEffect(() => {
+const stableHeight = useRef()
 
+
+useEffect(() => {
+  stableHeight.current.style.height=window.innerHeight+"px"
 }, [])
   return (
-    <div className="app-inner">
+    <div ref={stableHeight} className="app-inner">
       <NavigationPortal> </NavigationPortal>
       <Route path="/cards">
         <Index />
