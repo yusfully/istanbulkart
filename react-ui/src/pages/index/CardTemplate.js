@@ -5,6 +5,7 @@ import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
 import { useRouteMatch, useHistory } from "react-router-dom";
 import { TweenMax,Linear } from "gsap/all";
 import "./cardTemplate.scss";
+import { CSSTransition } from "react-transition-group";
 
 const CardTemplate = ({
   name,
@@ -26,15 +27,17 @@ const match=useRouteMatch()
   useEffect(() => {
     if(cardOptPos===0){
       cardsDispatch({type:"lockCards",lockCards:false})
-      opt.current.style.display="none"
+      
     }else{
       cardsDispatch({type:"lockCards",lockCards:true})
-      opt.current.style.display="flex"
+      
     }
    
   }, [cardOptPos])
 
- 
+ useEffect(() => {
+  cardsDispatch({type:"lockCards",lockCards:isOptOpened})
+ }, [isOptOpened])
  useEffect(() => {
   
 stableHeight.current.style.height=stableHeight.current.offsetHeight+"px"
@@ -56,58 +59,21 @@ const pullOptions = useRef()
   const firstTouch = useRef()
 
 const closeOpt=()=>{
-  let object = {
-    y: cardOptPos,
-  };
+ 
   setOptOpened(false);
  
-  TweenMax.to(object, 0.25, {
-    y: 0,
-    ease: Linear.easeOut,
-    onUpdate: function () {
-      setcardOptPos(object.y);
-    },
-  });
+
 }
 const openOpt=()=>{
   
-    let object = {
-      y: cardOptPos,
-    };
+  
     setOptOpened(true);
-   
-    TweenMax.to(object, 0.25, {
-      y: -50,
-      ease: Linear.easeOut,
-      onUpdate: function () {
-        setcardOptPos(object.y);
-      },
-    });
+  
   
 }
 
-  const handleOptionsMove=(e)=>{
+
   
-    let diff = e.touches[0].clientY - firstTouch.current;
-    firstTouch.current=e.touches[0].clientY
-    let newPos = cardOptPos + diff;
-
-if(newPos<=-50){
-  newPos=-50
-}
-else if(newPos>=0){
-  newPos=0
-}
-     setcardOptPos(newPos)
-  }
-  const handleOptionsStart=(e)=>{
-
-    firstTouch.current=e.touches[0].clientY
-    
-    cardsDispatch({type:"lockCards",lockCards:true})
-
-
-  }
 
   const handleOptionsEnd=(e)=>{
    if(isOptOpened){
@@ -182,20 +148,26 @@ history.push(`${match.url}/${type}`)
       }
     }
 
-    posStyle.transform = `scale(${scale}) rotateY(${rotationX}deg)  rotateX(${-rotationY}deg)  translate(0px, ${cardOptPos/1.5}%)`;
+    posStyle.transform = `scale(${scale}) rotateY(${rotationX}deg)  rotateX(${-rotationY}deg) `;
     posStyle.opacity = `${opacity}`;
     pos.current = posStyle;
     shadowref.current = { boxShadow: `0px  ${shadow}px ${10-cardOptPos/4}px #0000004a` };
   }
 
-  const handleCardAction = (id, type) => {};
 
   return ( <Fragment> 
-    <div ref={optionsCover} style={{
-      paddingBottom:`${cardsState.height}px`
-    }} className="rotate-cover">
-    <div ref={opt} className="card-back-wrap">
-     
+    <div ref={optionsCover}  className="rotate-cover">
+  
+      
+      <div style={pos.current ? pos.current : style} className={`card ${isOptOpened ? "optionsopened" : ""}`}>
+       
+         <CSSTransition
+        in={isOptOpened}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      ><div ref={opt} className="card-back-wrap">
+        
     <div  className="pull-options">
     <div className="pull-options-inner">
 <div className="card-options">
@@ -232,9 +204,8 @@ join="rounded"
 
     </div>
     </div>
-      
-      <div style={pos.current ? pos.current : style} className="card">
-      
+
+       </CSSTransition>
          <span
       style={shadowref.current && shadowref.current}
        className="shadow">
@@ -271,15 +242,12 @@ join="rounded"
             </div>
          
           </div>
-          <div onTouchMove={
-            (e)=>handleOptionsMove(e)
-          } 
-          onTouchStart={
-           (e)=>handleOptionsStart(e)
-         }
+          <div 
+        
          onTouchEnd={(e)=>handleOptionsEnd(e)}
          ref={pullOptions} className="dot dot">
-    <span></span>
+    <span className="left"></span>
+    
          </div>
           </div>
          

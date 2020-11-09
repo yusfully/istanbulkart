@@ -32,6 +32,7 @@ const ListItem = ({
   swipeActions,
   deleteOnSwipe,
   small,
+  onCollapseOpened,
   children,
 }) => {
   const render = (children) => {
@@ -52,10 +53,21 @@ const ListItem = ({
   const swipe = useRef();
   const deleteswipe = useRef();
   const handleChangeCollapse = (isopened) => {
-    
-    if(isopened){listDispatch({type:"changeCurrent",current:index})}
+  
+    if(isopened){
+     
+      onCollapseOpened && onCollapseOpened(cover.current.getBoundingClientRect(),cover.current.offsetTop,listState.current===null)
+      listDispatch({type:"changeCurrent",current:id})
+    }else{
+      if(listState.current===id){
+       
+        listDispatch({type:"closeAll"})
+      }
+      
+      }
     setCollapseIsOpened(isopened)
     setArrow(isopened ? 270 : 90);
+   
   };
   const [arrowDegree, setArrow] = useState(
     arrow && arrow === "horizontal" ? 0 : 90
@@ -84,8 +96,8 @@ const ListItem = ({
     }
   };
   useEffect(() => {
-console.log(listState)
-  if(listState.prev===index){
+
+  if(listState.current!==id){
     setcloseCollapse(true)
   }else{
     setcloseCollapse(false)

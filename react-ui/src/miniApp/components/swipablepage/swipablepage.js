@@ -13,6 +13,7 @@ import { TweenMax, Linear } from "gsap/all";
 const SwipablePage = forwardRef(({ children, lock, limit,onDrag }, ref) => {
   useImperativeHandle(ref, () => ({
     scrollPos(pos) {
+      
       setContentScroll(pos);
     },
     domEl: contentMain.current,
@@ -96,18 +97,23 @@ const SwipablePage = forwardRef(({ children, lock, limit,onDrag }, ref) => {
     }
     if (newPos > 0) {
       newPos = 0;
-      lock(true);
+      lock &&   lock(true);
     }
     if (contentScroll === "start") {
       if (diff < 0) {
         if (newPos === -limit) {
-          lock(false);
+          lock &&   lock(false);
         } else {
-          lock(true);
+          lock &&   lock(true);
         }
       }
     } else {
-      lock(false);
+      if(isOpened){
+        lock &&   lock(false);
+      }else{
+        lock &&   lock(true);
+      }
+      
 
       if (diff > 0) {
         newPos = -limit;
@@ -169,7 +175,7 @@ const SwipablePage = forwardRef(({ children, lock, limit,onDrag }, ref) => {
           <div
             style={{
               pointerEvents: `${isDragging ? "none" : "all"}`,
-              minHeight: `${height + "px" || "100%"}`,
+             
             }}
             className="swipable-page-inner"
           >

@@ -656,6 +656,7 @@ const match=useRouteMatch()
   const [activeId, setId] = useState(match.params.id)
   const [activevTransaction, setTransaction] = useState(transactions)
   const [filters, setFilters] = useState([])
+  const [scrollTo, setScroll] = useState(0)
   const [lock, setLock] = useState(cardsState.isLocked)
 
   const scrollableInner = useRef();
@@ -706,7 +707,9 @@ return element
     setTransaction(filteredTransactions)
   
   }
-
+useEffect(() => {
+  scrollableInner.current.scrollTo(scrollTo)
+}, [scrollTo])
   useEffect(() => {
   setLock(cardsState.isLocked)
   }, [cardsState.isLocked])
@@ -726,8 +729,22 @@ return element
    setFilters(filtersArr)
  
   }
-const handleCollapseOpened=(height)=>{
-console.log(height)
+const handleCollapseOpened=(height,top,openedPrev)=>{
+ 
+  if(openedPrev){
+    setScroll(top)
+    
+  }else{
+    if(scrollTo>top){
+     
+      setScroll(top)
+    }else{
+      setScroll(top-114)
+    }
+    
+  }
+  
+
 }
   const handleScrollContent = (offset, limit, data) => {
     if (onFinish) {
@@ -778,6 +795,18 @@ useEffect(() => {
               options={transactionDates}
             ></Select></div></Form>
 
+            <div style={{
+              display:"flex",
+              flexDirection:"column",
+              flex:"1 auto",
+              position:"relative"
+             
+            }}>
+            <div style={{
+              height: "100%",
+              position: "absolute",
+              width:"100%"
+            }}>
             <Scrollable
             ref={scrollableInner}
             damping={0.1}
@@ -799,8 +828,10 @@ useEffect(() => {
          
           return (
 
-            <List.item
-            index={index}
+            <List.item  
+
+            
+            id={`transaction-${element.islemNo ? element.islemNo : element.talimatNo ? element.talimatNo : index}`}
             key={`transaction-${index}`}
               thumb={{
                 radius: "10px",
@@ -812,7 +843,7 @@ useEffect(() => {
               action={{
                 type: "collapse",
               }}
-              onCollapseOpened={(height)=>handleCollapseOpened(height)}
+              onCollapseOpened={(height,top,openedPrev)=>handleCollapseOpened(height,top,openedPrev)}
               align="middle"
               small={element.date}
               text={element.title}
@@ -840,25 +871,11 @@ useEffect(() => {
                         (element.type === "islem" && "İşlem ")}
                       No
                     </div>
-                    <div className="right-side">{element.talimatNo}</div>
+                    <div className="right-side">{element.talimatNo ? element.talimatNo : element.islemNo ? element.islemNo : "" }</div>
                   </div>
-                  <div className="list-item-transactions">
-                    <div className="title">
-                      {(element.type === "yukleme" && "Talimat ") ||
-                        (element.type === "islem" && "İşlem ")}
-                      tarihi
-                    </div>
-                    <div className="right-side">{element.date}</div>
-                  </div>
+                
 
-                  <div className="list-item-transactions">
-                    <div className="title">
-                      {(element.type === "yukleme" && "Talimat ") ||
-                        (element.type === "islem" && "İşlem ")}
-                      tutarı
-                    </div>
-                    <div className="right-side">{element.amount}</div>
-                  </div>
+                 
                   {element.desc && (
                     <div className="list-item-transactions">
                       <div className="title">Açıklamalar</div>
@@ -871,7 +888,7 @@ useEffect(() => {
           );
         })}
       </List>
-    </div></Scrollable></Fragment>
+    </div></Scrollable></div></div></Fragment>
   );
 };
 const mapDispatchToProps = (dispatch) => ({

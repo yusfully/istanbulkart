@@ -43,6 +43,9 @@ span.dot-container {
 }
 .carousel.circle {
   border-radius: 0;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
 }
 .arrow-content {
   background: #4242429c;

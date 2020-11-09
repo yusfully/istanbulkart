@@ -50,14 +50,13 @@ let history=useHistory()
 
 
 useEffect(() => {
-  setActiveCard("98a7f98enxf9q8wenf98nrx7",0);
   if(!myCards.cards){
     fetchCards(data)
   }
 }, [])
 
 useEffect(() => {
-
+  setActiveCard("98a7f98enxf9q8wenf98nrx7",0);
   if(myCards.cards){
 
     history.push(match.path+"/"+myCards.mainCard)

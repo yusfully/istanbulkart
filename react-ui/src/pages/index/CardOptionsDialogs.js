@@ -8,10 +8,10 @@ const CardOptionsDialogs = ({deleteCard,type,setMainCard}) => {
 let match=useRouteMatch()
 let history=useHistory()
 useEffect(() => {
-  
+  console.log(history)
    
   
-}, [])
+}, [history])
 
 const handleDelete=()=>{
   if(type==="delete"){
@@ -19,6 +19,7 @@ const handleDelete=()=>{
   }else{
     setMainCard(match.params.id)
   }
+ 
   history.goBack()
 }
 

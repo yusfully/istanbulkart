@@ -83,7 +83,7 @@ a {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding-bottom: 50pt;
+  padding-bottom: 49pt;
   padding-top: 44pt;
 }
 #root {

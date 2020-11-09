@@ -98,10 +98,13 @@ div#modal {
   z-index: -1;
 }
 .modal-header {
-  padding: 20px 0;
   border-bottom: 1px solid #dfdfe6;
-  margin-bottom: 20px;
   padding-top: 0;
+  text-align: center;
+  width: 100%;
+}
+.modal-header .title {
+  text-align: center;
 }
 .modal-controls .button-container {
   margin: 0;

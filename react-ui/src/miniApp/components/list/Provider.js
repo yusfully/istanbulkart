@@ -7,8 +7,8 @@ export const ActionTypes = {
 };
 
 const initialState = {
-  current: -1,
-  prev:-1,
+  current: null,
+  prev:null,
 };
 
 const reducer = (state, action) => {
@@ -16,8 +16,8 @@ const reducer = (state, action) => {
   switch (action.type) {
     case ActionTypes.closeAll:
       return {
-        current: -1,
-        prev: -1,
+        current: null,
+        prev: null,
       };
     case ActionTypes.changeCurrent:
       return {

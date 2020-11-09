@@ -69,15 +69,15 @@ const topPart = useRef()
   const [isAddCardVisible, setisAddCardVisible] = useState(false);
   const [isPlusActive, setisPlusActive] = useState(true);
   const [scrollDragLimit, setLimit] = useState();
-  const [topPartHeight, settopPartHeight] = useState();
+  const [topPartHeight, settopPartHeight] = useState(height.current+20);
   const [lock, setLock] = useState(true);
   const [progress, setProgress] = useState();
   const [cardProgress, setCardProgress] = useState();
 
   useEffect(() => {
-   
+  
     setLimit(
-      150
+      110
     );
   }, []);
 
@@ -92,7 +92,7 @@ const topPart = useRef()
     cardsDispatch({type:"isLocked",isLocked:lock})
   }, [lock])
   const callbackFunction = (islock) => {
-  
+
     setLock(islock);
   };
   const moneyClosed = () => {
@@ -139,11 +139,7 @@ const topPart = useRef()
     
     return cardsarr;
   };
-  useEffect(() => {
-
-    settopPartHeight(topPart.current.offsetHeight)
-   
-  }, []);
+ 
   useEffect(() => {
     cardProg.current = cardProgress;
   }, [cardProgress]);
@@ -171,7 +167,7 @@ const topPart = useRef()
      
 
       history.push(Object.keys(myCards)[index]);
-    } 
+    }
   };
 
   const handleCardProgress = (next, prev, progress, delta) => {
@@ -186,7 +182,7 @@ const topPart = useRef()
   const handlePageDrag=(pos)=>{
 let rate=pos/scrollDragLimit
 let posTotal=topPartHeight+pos
-    topPart.current.style.height=posTotal+"px"
+    topPart.current.style.height=posTotal+20+"px"
 
 
     
@@ -198,33 +194,36 @@ let posTotal=topPartHeight+pos
   setisAddCardVisible(true)
  }
 
+
   const handleAddMoney = () => {
     addMoneyComp.current.open();
   };
 
   const handleFinishScroll = (isfinished) => {
-    
+   if( swipePage.current){
     swipePage.current.scrollPos(isfinished);
+   }
+     
+  
+   
   };
 
   return (
     <div className="transaction-list">
-  <div onClick={()=>handleAddCard()} className="add-card">
-  <div className="cards-count">
- <p ><span className="active-card-num">{activeCard.index+1}</span><span className="total-card-num">{Object.keys(myCards).length}</span></p>
-  </div>
-  <div className="add-card-action">
-  <span className="add-card-action-label">KART EKLE</span>
-  <SvgIcon
-  name="plus"
-  stroke={"#54420a"}
-  strokeWidth={"25"}
-  size={16}
-  lineCap="rounded"
-  join="rounded"
-></SvgIcon>
-  </div>
-  </div>
+    <div className="card-amount-cover">
+    <div className="amount">
+    <small>BAKİYE</small>
+  <div className="amount-cover"><div  className="amount">{myCards[activeCard.id].amount}</div><span class="price-icon">₺</span></div></div>
+  <div
+          onClick={handleAddMoney}
+           className="action">
+          PARA YÜKLE
+          </div></div>
+
+ <div style={{
+   position:"relative",
+   overflow:"hidden"
+ }}>
     <div ref={topPart} className="card-list-cover"> 
    
    {myCards && <Carousel
@@ -251,19 +250,29 @@ let posTotal=topPartHeight+pos
     {renderCards()}
   </Carousel>}
 
-
-  
+<div onClick={()=>handleAddCard()} className="add-card">
+  <div className="cards-count">
+ <p ><span className="active-card-num">{activeCard.index+1}</span><span className="total-card-num">{Object.keys(myCards).length}</span></p>
   </div>
-  <div className="card-amount-cover">
-  <div className="amount">
-  <small>BAKİYE</small>
-<div className="amount-cover"><div  className="amount">{myCards[activeCard.id].amount}</div><span class="price-icon">₺</span></div></div>
-<div
-        onClick={handleAddMoney}
-         className="action">
-        PARA YÜKLE
-        </div></div>
+  <div className="add-card-action">
+  <span className="add-card-action-label">KART EKLE</span>
+  <SvgIcon
+  name="plus"
+  stroke={"#54420a"}
+  strokeWidth={"25"}
+  size={16}
+  lineCap="rounded"
+  join="rounded"
+></SvgIcon>
+  </div>
+  </div>
+   
+  </div>
 
+ 
+
+  <div className="card-num-bg">
+  {activeCard.index+1}</div></div>
 
   
       <div className="transaction-list-cover">
@@ -295,7 +304,7 @@ let posTotal=topPartHeight+pos
                   return (
                     <Tab.TabListItem
                       id={`tab2-${index}`}
-                      component={()=> element.name ==="islemler" ? <Transactions onFinish={(isfinished)=>handleFinishScroll(isfinished)} type={element.name}   /> : <Orders onFinish={(isfinished)=>handleFinishScroll(isfinished)} type={element.name}   />}
+                      component={()=> element.name ==="islemler" ? <Transactions  onFinish={(isfinished)=>handleFinishScroll(isfinished)} type={element.name}   /> : <Orders onFinish={(isfinished)=>handleFinishScroll(isfinished)} type={element.name}   />}
                       index={index}
                       addClass="tab-list"
                     >

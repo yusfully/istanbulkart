@@ -2,7 +2,6 @@
   width: 72%;
   position: relative;
   color: #f2f2f2;
-  overflow: hidden;
   margin-top: 15px;
   padding-bottom: 20px;
 }
@@ -30,6 +29,7 @@
   padding: 0 20px;
   font-family: "bw-mitga-bold";
 }
+
 .card-option {
   display: flex;
   align-items: center;
@@ -61,14 +61,24 @@
   position: relative;
   border-radius: 20px;
   transform-origin: center;
-  min-height: 2px;
+  overflow: hidden;
 }
 .card-back-wrap {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   position: absolute;
-  z-index: 0;
-  bottom: 0;
+  z-index: 4;
+  /* bottom: 0; */
+  background: #2c2c2dd9;
+  transition: all 0.25s ease-out;
+  top: 100%;
+}
+.fade-enter-start.card-back-wrap {
+  top: 100%;
+}
+.fade-enter-active.card-back-wrap,
+.fade-enter-done.card-back-wrap {
+  top: 0%;
 }
 .shadow {
   width: 80%;

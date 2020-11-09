@@ -181,6 +181,8 @@ export const TabContent = ({
             style={{
               flex: "0 0 100%",
               maxWidth: "100%",
+              display:"flex",
+              flexDirection:"column"
             }}
             className="tab-content-item"
             key={i}
