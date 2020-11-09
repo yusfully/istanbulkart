@@ -68,16 +68,29 @@
   position: absolute;
   z-index: 4;
   /* bottom: 0; */
-  background: #2c2c2dd9;
-  transition: all 0.25s ease-out;
-  top: 100%;
+  background: #2c2c2d21;
+  overflow: hidden;
   border-radius: 20px;
 }
-.fade-enter-start.card-back-wrap {
+.card-back-wrap .pull-options {
+  transition: all 0.25s ease-out;
+  position: absolute;
   top: 100%;
+}
+
+.fade-enter-start.card-back-wrap {
+  background-color: #2c2c2dbf;
 }
 .fade-enter-active.card-back-wrap,
 .fade-enter-done.card-back-wrap {
+  background: #2c2c2d21;
+}
+
+.fade-enter-start.card-back-wrap .pull-options {
+  top: 100%;
+}
+.fade-enter-active.card-back-wrap .pull-options,
+.fade-enter-done.card-back-wrap .pull-options {
   top: 0%;
 }
 .shadow {
