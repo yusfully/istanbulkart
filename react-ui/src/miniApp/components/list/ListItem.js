@@ -69,6 +69,8 @@ const ListItem = ({
     setArrow(isopened ? 270 : 90);
    
   };
+
+  
   const [arrowDegree, setArrow] = useState(
     arrow && arrow === "horizontal" ? 0 : 90
   );

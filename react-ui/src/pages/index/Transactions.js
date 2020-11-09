@@ -1,12 +1,16 @@
 import React,{Fragment, useEffect,useState,useRef} from "react";
-import List from "../../miniApp/components/list/List";
+
 import { useRouteMatch } from "react-router-dom";
 import Select from "../../miniApp/components/form/select/Select"
 import Form from "../../miniApp/components/form/form/index"
 import { fetchTransaction } from "../../redux/actions/transactions.action";
-import Scrollable from "../../miniApp/components/slider/Scrollable"
+
 import { connect } from "react-redux";
 import { useCardsContext } from "./Provider";
+import TransactionsList from "./TransactionsList"
+
+
+
 
 const transactionsData = {
   "askugyfdn92378rtyx9238yrx92":
@@ -32,15 +36,7 @@ const transactionsData = {
         category: "bus",
         title: "İETT",
       },
-      {
-        uid: "042342342115180",
-        type: "yukleme", category: "wallet",
-        talimatNo: "7422817",
-        date: "02/10/2020, 02:30",
-        amount: "20,50",
-        balance: "3,33",
-        title: "Para yükleme",
-      },
+     
       {
         uid: "042988E1232115180",
         type: "yukleme", category: "wallet",
@@ -50,16 +46,7 @@ const transactionsData = {
         balance: "123,33",
         title: "Para yükleme",
       },
-      {
-        uid: "042988E21112315180",
-        type: "islem",
-        islemNo: "2345231",
-        date: "01/10/2020, 21:54",
-        amount: "1,45",
-        balance: "32,33",
-        category: "shop",
-        title: "Migros AŞ.",
-      },
+      
     
       {
         uid: "0429234133119260",
@@ -148,26 +135,17 @@ const transactionsData = {
         uid: "042988E1232115180",
         type: "yukleme", category: "wallet",
         talimatNo: "7449817",
-        date: "21/09/2020, 07:35",
+        date: "01/11/2020, 07:35",
         amount: "204,00",
         balance: "183,33",
         title: "Para yükleme",
       },
-      {
-        uid: "042988E21112315180",
-        type: "islem",
-        islemNo: "2345231",
-        date: "01/10/2020, 21:54",
-        amount: "10,45",
-        balance: "32,33",
-        category: "shop",
-        title: "Migros AŞ.",
-      },
+     
       {
         uid: "042988E2234147180",
         type: "islem",
         islemNo: "2323231",
-        date: "04/08/2020, 10:32",
+        date: "04/09/2020, 10:32",
         amount: "2,85",
         balance: "46,93",
         category: "bus",
@@ -180,8 +158,8 @@ const transactionsData = {
         date: "14/09/2020, 01:10",
         amount: "5,45",
         balance: "46,93",
-        category: "bus",
-        title: "İETT",
+        category: "train",
+        title: "Metro",
       },
     
       {
@@ -191,8 +169,8 @@ const transactionsData = {
         date: "21/10/2020, 01:10",
         amount: "1,45",
         balance: "46,93",
-        category: "bus",
-        title: "İETT",
+        category: "car",
+        title: "Taksi",
       },
       {
         uid: "042101243115180",
@@ -217,22 +195,13 @@ const transactionsData = {
         uid: "04201234140123480",
         type: "islem",
         islemNo: "64261236",
-        date: "30/09/2020, 20:36",
+        date: "30/10/2020, 20:36",
         amount: "242,00",
         balance: "223,00",
         category: "compass",
         title: "Cafe",
       },
-      {
-        uid: "042988E1241235180",
-        type: "islem",
-        islemNo: "341444535235",
-        date: "28/09/2020, 21:53",
-        amount: "160,00",
-        balance: "123,33",
-        category: "mappin",
-        title: "Ticket master",
-      },
+    
       {
         uid: "04298892315180",
         type: "islem",
@@ -247,7 +216,7 @@ const transactionsData = {
         uid: "042234234315180",
         type: "islem",
         islemNo: "2201234234",
-        date: "05/10/2020, 18:53",
+        date: "05/11/2020, 18:53",
         amount: "31,00",
         balance: "123,33",
         category: "globe",
@@ -256,15 +225,7 @@ const transactionsData = {
     ],
     "ksjhdfna98s7dn9as8nydfaıusfh":
     [
-      {
-        uid: "042988E1232115180",
-        type: "yukleme", category: "wallet",
-        talimatNo: "7449817",
-        date: "21/09/2020, 07:35",
-        amount: "92,00",
-        balance: "183,33",
-        title: "Para yükleme",
-      },
+     
       {
         uid: "042988E21112315180",
         type: "islem",
@@ -279,11 +240,11 @@ const transactionsData = {
         uid: "042988E2234147180",
         type: "islem",
         islemNo: "2323231",
-        date: "04/08/2020, 10:32",
+        date: "04/11/2020, 10:32",
         amount: "1,45",
         balance: "46,93",
-        category: "bus",
-        title: "İBB Metro",
+        category: "bike",
+        title: "İsbike",
       },
       {
         uid: "04298303119260",
@@ -299,7 +260,7 @@ const transactionsData = {
         uid: "042342342115180",
         type: "yukleme", category: "wallet",
         talimatNo: "7422817",
-        date: "02/10/2020, 02:30",
+        date: "08/11/2020, 02:30",
         amount: "50,00",
         balance: "183,33",
         title: "Para yükleme",
@@ -310,51 +271,13 @@ const transactionsData = {
         uid: "0429234133119260",
         type: "islem",
         islemNo: "122023423",
-        date: "21/10/2020, 01:10",
+        date: "10/11/2020, 01:10",
         amount: "1,45",
         balance: "46,93",
-        category: "bus",
-        title: "İETT",
+        category: "ship",
+        title: "Vapur",
       },
-      {
-        uid: "042101243115180",
-        type: "yukleme", category: "wallet",
-        talimatNo: "742342317",
-        date: "10/09/2020, 02:30",
-        amount: "100,00",
-        balance: "183,33",
-        title: "Para yükleme",
-      },
-      {
-        uid: "03423991E2115180",
-        type: "islem",
-        islemNo: "342342",
-        date: "24/08/2020, 13:20",
-        amount: "12250,99",
-        balance: "23,00",
-        category: "phone",
-        title: "MediaMrkt",
-      },
-      {
-        uid: "04201234140123480",
-        type: "islem",
-        islemNo: "64261236",
-        date: "30/09/2020, 20:36",
-        amount: "92,00",
-        balance: "223,00",
-        category: "compass",
-        title: "Cafe",
-      },
-      {
-        uid: "042988E1241235180",
-        type: "islem",
-        islemNo: "341444535235",
-        date: "28/09/2020, 21:53",
-        amount: "71,00",
-        balance: "123,33",
-        category: "mappin",
-        title: "Ticket master",
-      },
+      
       {
         uid: "04298892315180",
         type: "islem",
@@ -378,125 +301,8 @@ const transactionsData = {
     ]
   ,"23874n293847n928374n92837n":
   [
-    {
-      uid: "042988E1232115180",
-      type: "yukleme", category: "wallet",
-      talimatNo: "7449817",
-      date: "21/09/2020, 07:35",
-      amount: "4,00",
-      balance: "183,33",
-      title: "Para yükleme",
-    },
-    {
-      uid: "042988E21112315180",
-      type: "islem",
-      islemNo: "2345231",
-      date: "01/10/2020, 21:54",
-      amount: "2,45",
-      balance: "32,33",
-      category: "shop",
-      title: "Migros AŞ.",
-    },
-    {
-      uid: "042988E2234147180",
-      type: "islem",
-      islemNo: "2323231",
-      date: "04/08/2020, 10:32",
-      amount: "29,45",
-      balance: "46,93",
-      category: "bus",
-      title: "İBB Metro",
-    },
-    {
-      uid: "04298303119260",
-      type: "islem",
-      islemNo: "1220231",
-      date: "14/09/2020, 01:10",
-      amount: "321,45",
-      balance: "46,93",
-      category: "bus",
-      title: "İETT",
-    },
-    {
-      uid: "042342342115180",
-      type: "yukleme", category: "wallet",
-      talimatNo: "7422817",
-      date: "02/10/2020, 02:30",
-      amount: "23,00",
-      balance: "183,33",
-      title: "Para yükleme",
-    },
-  
-  
-    {
-      uid: "0429234133119260",
-      type: "islem",
-      islemNo: "122023423",
-      date: "21/10/2020, 01:10",
-      amount: "139,45",
-      balance: "46,93",
-      category: "bus",
-      title: "İETT",
-    },
-    {
-      uid: "042101243115180",
-      type: "yukleme", category: "wallet",
-      talimatNo: "742342317",
-      date: "10/09/2020, 02:30",
-      amount: "432,00",
-      balance: "183,33",
-      title: "Para yükleme",
-    },
-    {
-      uid: "03423991E2115180",
-      type: "islem",
-      islemNo: "342342",
-      date: "24/08/2020, 13:20",
-      amount: "50,99",
-      balance: "23,00",
-      category: "phone",
-      title: "MediaMrkt",
-    },
-    {
-      uid: "04201234140123480",
-      type: "islem",
-      islemNo: "64261236",
-      date: "30/09/2020, 20:36",
-      amount: "922,00",
-      balance: "223,00",
-      category: "compass",
-      title: "Cafe",
-    },
-    {
-      uid: "042988E1241235180",
-      type: "islem",
-      islemNo: "341444535235",
-      date: "28/09/2020, 21:53",
-      amount: "10,00",
-      balance: "23,33",
-      category: "mappin",
-      title: "Ticket master",
-    },
-    {
-      uid: "04298892315180",
-      type: "islem",
-      islemNo: "2201234234",
-      date: "25/10/2020, 18:53",
-      amount: "99,00",
-      balance: "123,33",
-      category: "globe",
-      title: "bana bi",
-    },
-    {
-      uid: "042234234315180",
-      type: "islem",
-      islemNo: "2201234234",
-      date: "05/10/2020, 18:53",
-      amount: "123,00",
-      balance: "123,33",
-      category: "shop",
-      title: "carfour",
-    }
+    
+     
   ]
   ,"asdasda09823740293740dn1283":
   [
@@ -656,10 +462,10 @@ const match=useRouteMatch()
   const [activeId, setId] = useState(match.params.id)
   const [activevTransaction, setTransaction] = useState(transactions)
   const [filters, setFilters] = useState([])
-  const [scrollTo, setScroll] = useState(0)
+  const [renderTransactions, setrenderTransactions] = useState(true)
   const [lock, setLock] = useState(cardsState.isLocked)
 
-  const scrollableInner = useRef();
+ 
   useEffect(() => {
     filterTransactions()
   }, [filters])
@@ -707,9 +513,10 @@ return element
     setTransaction(filteredTransactions)
   
   }
+
 useEffect(() => {
-  scrollableInner.current.scrollTo(scrollTo)
-}, [scrollTo])
+  setrenderTransactions(true)
+}, [activevTransaction])
   useEffect(() => {
   setLock(cardsState.isLocked)
   }, [cardsState.isLocked])
@@ -729,71 +536,50 @@ useEffect(() => {
    setFilters(filtersArr)
  
   }
-const handleCollapseOpened=(height,top,openedPrev)=>{
- 
-  if(openedPrev){
-    setScroll(top)
-    
-  }else{
-    if(scrollTo>top){
-     
-      setScroll(top)
-    }else{
-      setScroll(top-114)
-    }
-    
-  }
-  
 
-}
-  const handleScrollContent = (offset, limit, data) => {
-    if (onFinish) {
-      if (offset.y === 0) {
-        onFinish("start");
-      } else if (offset.y === data.limit.y) {
-        onFinish("finish");
-      } else {
-        onFinish("mid");
-      }
-    }
-  };
+
   useEffect(() => {
-    fetchTransaction(transactionsData[match.params.id])
+    fetchTransaction(transactionsData[activeId])
   }, [activeId])
 useEffect(() => {
   if(match) setId(match.params.id)
  
 }, [match])
  useEffect(() => {
+  setrenderTransactions(false)
   setTransaction(transactions)
  }, [transactions])
 
+
+
   return (
     <Fragment> 
-    <Form onFormChange={(payload)=>handleFilter(payload)}>
-    <div style={{
-      display:"flex",
-      justifyContent:"space-between",
-      padding:" 0 10px",
 
-      fontSize: "10pt",
-      color: "#8c8c98"
-    }} className="sort-actions">
-    <Select
-    selectedDefault={2}
-    pos="left"
-              type="single"
-              id="type"
-              options={transactionFilters}
-            >
-            </Select>
-          <Select
-            selectedDefault={2}
-            pos="right"
-              type="single"
-              id="date"
-              options={transactionDates}
-            ></Select></div></Form>
+  
+   <Form onFormChange={(payload)=>handleFilter(payload)}>
+   <div style={{
+     display:"flex",
+     justifyContent:"space-between",
+     padding:" 0 10px",
+
+     fontSize: "10pt",
+     color: "#8c8c98"
+   }} className={`sort-actions ${activevTransaction && activevTransaction.length>0 ? "" : "empty"}`}>
+   <Select
+   selectedDefault={2}
+   pos="left"
+             type="single"
+             id="type"
+             options={transactionFilters}
+           >
+           </Select>
+         <Select
+           selectedDefault={2}
+           pos="right"
+             type="single"
+             id="date"
+             options={transactionDates}
+           ></Select></div></Form> 
 
             <div style={{
               display:"flex",
@@ -807,88 +593,14 @@ useEffect(() => {
               position: "absolute",
               width:"100%"
             }}>
-            <Scrollable
-            ref={scrollableInner}
-            damping={0.1}
-            continuousScrolling={true}
-            direction="y"
-            lock={lock || false}
-            onScroll={handleScrollContent}
-          >
-            <div style={{
-      backgroundColor:"#f6f6f7"
-    }}>
+        
 
     
    
+   {renderTransactions && <TransactionsList lock={lock} onFinish={onFinish} transactions={activevTransaction  || []}></TransactionsList>}
     
-    
-      <List style="atached" platform="ios" addClass="transaction-lists-cover">
-        {activevTransaction && activevTransaction.map((element,index) => {
-         
-          return (
-
-            <List.item  
-
-            
-            id={`transaction-${element.islemNo ? element.islemNo : element.talimatNo ? element.talimatNo : index}`}
-            key={`transaction-${index}`}
-              thumb={{
-                radius: "10px",
-                backgroundColor: "#ffffff",
-                stroke: "#333333",
-                svgIcon: `${element.category}`,
-                size: 25,
-              }}
-              action={{
-                type: "collapse",
-              }}
-              onCollapseOpened={(height,top,openedPrev)=>handleCollapseOpened(height,top,openedPrev)}
-              align="middle"
-              small={element.date}
-              text={element.title}
-              rightSide={
-                <div
-                  style={{
-                    color: `${
-                      element.type === "yukleme" ? "#219653" : "#EB5757"
-                    }`,
-                  }}
-                >
-                  {element.amount}
-                </div>
-              }
-            >
-              <List.CollapseList>
-                <div className="list-transactions-cover">
-                  <div className="list-item-transactions">
-                    <div className="title">Kart UID</div>
-                    <div className="right-side">{element.uid}</div>
-                  </div>
-                  <div className="list-item-transactions">
-                    <div className="title">
-                      {(element.type === "yukleme" && "Talimat ") ||
-                        (element.type === "islem" && "İşlem ")}
-                      No
-                    </div>
-                    <div className="right-side">{element.talimatNo ? element.talimatNo : element.islemNo ? element.islemNo : "" }</div>
-                  </div>
-                
-
-                 
-                  {element.desc && (
-                    <div className="list-item-transactions">
-                      <div className="title">Açıklamalar</div>
-                      <div className="right-side">{element.desc}</div>
-                    </div>
-                  )}
-                </div>
-              </List.CollapseList>
-            </List.item>
-          );
-        })}
-      </List>
-    </div></Scrollable></div></div></Fragment>
+   
+    </div></div></Fragment>
   );
 };
 const mapDispatchToProps = (dispatch) => ({

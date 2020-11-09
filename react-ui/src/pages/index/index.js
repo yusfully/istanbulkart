@@ -30,9 +30,9 @@ const data = [
   },
   {
     id: "23874n293847n928374n92837n",
-    name: "Sevmediğim kart",
+    name: "Eski kart",
     number: "12 4400 1100 1112 9999",
-    amount: "1234.43",
+    amount: "4.43",
     isMain: false,
   },
   {

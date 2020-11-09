@@ -186,6 +186,17 @@ span.price-icon {
   padding-bottom: 20px;
   border-bottom: 1px solid;
 }
+.sort-actions.empty {
+  display: none !important;
+}
+.empty-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40pt;
+  opacity: 0.5;
+}
 .amount-cover {
   display: flex;
 }
