@@ -2,26 +2,27 @@ import React,{useEffect,useRef} from "react";
 import NavigationPortal from "../../components/pager/NavigationPortal";
 import { Route,useHistory,useRouteMatch } from "react-router-dom";
 import {fetchCards, setActiveCard} from "../../../redux/actions/cards.action"
+import NewCard from "../../../pages/index/NewCard"
 import Index from "../../../pages/index"
 import { connect } from "react-redux";
 
 const data = [
-  {
+{
+    id: "askugyfdn92378rtyx9238yrx92",
+    name: "Berrak Edin Yılmaz",
+    number: "12 2342 0002 1992 2233",
+    amount: "0.10",
+    isMain: true,
+  }, {
     id: "98a7f98enxf9q8wenf98nrx7",
     name: "Yusuf Ozturk",
     number: "12 3234 2342 8843 3322",
     amount: "153.00",
     isMain: false,
   },
+  
   {
-    id: "askugyfdn92378rtyx9238yrx92",
-    name: "Berrak Edin Yılmaz",
-    number: "12 2342 0002 1992 2233",
-    amount: "0.10",
-    isMain: true,
-  },
-  {
-    id: "ksjhdfna98s7dn9as8nydfaıusfh",
+    id: "1342823828392283",
     name: "Furkan Konyalı",
     number: "12 52 0022 2299 1101",
     amount: "9.85",
@@ -29,9 +30,9 @@ const data = [
   },
   {
     id: "23874n293847n928374n92837n",
-    name: "Sevmediğim kart",
+    name: "Eski kart",
     number: "12 4400 1100 1112 9999",
-    amount: "1234.43",
+    amount: "4.43",
     isMain: false,
   },
   {
@@ -58,8 +59,9 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-
-  if(myCards.cards){
+  
+  if(myCards.cards && Object.keys(myCards.cards).length>0){
+    
 
     history.push(match.path+"cards/"+myCards.mainCard)
   }
@@ -72,6 +74,9 @@ useEffect(() => {
       <Route path="/cards">
         <Index />
       </Route>
+      <Route path="/newCard">
+      <NewCard />
+    </Route>
     </div>
   );
 };

@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Navigator from "../../miniApp/components/buttons/Navigator";
 import List from "../../miniApp/components/list/List";
-import Transaction from "./Transaction";
+import SvgIcon from "../../miniApp/components/icon/svg/SvgIcon";
 const transactions = [
   {
     uid: "042988E2115180",
@@ -28,46 +27,79 @@ const Transactions = ({ myCards }) => {
   return (
     <Fragment>
       <List style="atached" platform="ios" addClass="transaction-lists-cover">
-        {transactions.map((element) => {
-          return (
-            <Navigator
-              target={{
-                component: () => <Transaction />,
-                openStyle: "fromRight",
-                goBackWith: "arrow",
-                pathType: "location",
-                router: element.type,
-                params: { id: element.uid },
-                type: "newPage",
-              }}
-              openType="navigate"
-            >
-              <List.item
-                thumb={{
-                  radius: "10px",
-                  backgroundColor: "#ffffff",
-                  stroke: "#333333",
-                  svgIcon: `${element.category}`,
-                  size: 25,
+      {transactions ? transactions.length>0 ? transactions.map((element,index) => {
+    
+        return (
+      
+          <List.item  
+      
+         addClass={`${element.category}`}
+          id={`transaction-${element.islemNo ? element.islemNo : element.talimatNo ? element.talimatNo : index}`}
+          key={`transaction-${index}`}
+            thumb={{
+              radius: "10px",
+              backgroundColor: "#ffffff",
+              stroke: "#333333",
+              svgIcon: `${element.category}`,
+              size: 25,
+            }}
+            action={{
+              type: "collapse",
+            }}
+           
+            align="middle"
+            small={element.date}
+            text={element.title}
+            rightSide={
+              <div
+                style={{
+                  color: `${
+                    element.type === "yukleme" ? "#219653" : "#EB5757"
+                  }`,
                 }}
-                align="middle"
-                small={element.date}
-                text={element.title}
-                rightSide={
-                  <div
-                    style={{
-                      color: `${
-                        element.type === "yukleme" ? "#219653" : "#EB5757"
-                      }`,
-                    }}
-                  >
-                    {element.amount}
+              >
+                {element.amount}
+              </div>
+            }
+          >
+            <List.CollapseList>
+              <div className="list-transactions-cover">
+                <div className="list-item-transactions">
+                  <div className="title">Kart UID</div>
+                  <div className="right-side">{element.uid}</div>
+                </div>
+                <div className="list-item-transactions">
+                  <div className="title">
+                    {(element.type === "yukleme" && "Talimat ") ||
+                      (element.type === "islem" && "İşlem ")}
+                    No
                   </div>
-                }
-              ></List.item>
-            </Navigator>
-          );
-        })}
+                  <div className="right-side">{element.talimatNo ? element.talimatNo : element.islemNo ? element.islemNo : "" }</div>
+                </div>
+              
+      
+               
+                {element.desc && (
+                  <div className="list-item-transactions">
+                    <div className="title">Açıklamalar</div>
+                    <div className="right-side">{element.desc}</div>
+                  </div>
+                )}
+              </div>
+            </List.CollapseList>
+          </List.item>
+        );
+      }) : <div className="empty-screen">
+      <SvgIcon
+      name={"warning"}
+      stroke={"#333333"}
+      strokeWidth={"10"}
+      size={70}
+      lineCap="rounded"
+      join="rounded"
+      ></SvgIcon>
+      <h3>Talimatınız bulunmamaktadır</h3>
+      </div> : <div>Loading</div>}
       </List>
     </Fragment>
   );

@@ -7,6 +7,7 @@ const Button = ({
   hoverClass,
   arrow,
   icon,
+  disabled,
   btnType,
   btnStyle,
   children,
@@ -171,6 +172,7 @@ const Button = ({
       }`}
     >
       <button
+      disabled={disabled ? disabled : false}
         ref={buttonRef}
         type={type ? type : "button"}
         onTouchEnd={(e) => handleTouchEnd(e)}

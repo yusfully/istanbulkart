@@ -32,6 +32,7 @@ const cardsReducer = (state = INITIAL_STATE, action) => {
           ...state,
           mainCard: action.id,
         };
+        
     case CARDS_ADD:
       return {
         ...state,

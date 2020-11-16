@@ -4,6 +4,7 @@ import Portal from "../../components/pager/Portal";
 import "./modal.scss";
 import { useHistory, useParams, Route, useRouteMatch } from "react-router-dom";
 import {  CSSTransition } from "react-transition-group";
+import UiIcon from "./../icon/svg/UiIcon"
 import Button from "../buttons/Button";
 
 
@@ -87,7 +88,15 @@ const Modal = ({
                   <h3 className="title">{title}</h3>
                   <h5 className="small">{highlight}</h5>
                   <span className="close-modal" onTouchEnd={() => close(false)}>
-                    <i className="lni lni-close"></i>
+                  <UiIcon
+               
+                  currentIcon="multiply"
+                  stroke={"#a1a4a9"}
+                  strokeWidth={"40pt"}
+                  size="16"
+                  lineCap="rounded"
+                  join="rounded"
+                ></UiIcon>
                   </span>
                 </div>
                 <div className="modal-body">{children}</div>

@@ -194,8 +194,11 @@ span.price-icon {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 40pt;
+  padding: 20pt;
   opacity: 0.5;
+}
+.empty-screen h3 {
+  font-size: 12pt;
 }
 .amount-cover {
   display: flex;
@@ -359,13 +362,14 @@ span.add-card-action-label {
   border-radius: 20px;
   font-size: 10pt;
   text-align: center;
+  position: relative;
 }
 .card-opt-dialog-actions {
   display: flex;
   margin-top: 20px;
 }
 .bordered.radius.button.filled.button-container.btn-block.center.btn-icon-right {
-  padding: 10px;
+  padding: 0px;
   margin: 0;
 }
 .bordered.grey.radius.button.filled .btn {
@@ -424,4 +428,46 @@ span.add-card-action-label {
   margin-bottom: 11px;
   margin-top: -8px;
   transform: rotate(-45deg) translate(-13px, -2px);
+}
+.globe .list-thumb-cover.withbg:after {
+  background: #24c0d2;
+}
+.compass .list-thumb-cover.withbg:after {
+  background: #dc8af5;
+}
+.wallet .list-thumb-cover.withbg:after {
+  background: #23a04b;
+}
+.mappin .list-thumb-cover.withbg:after {
+  background: #24c0d2;
+}
+.phone .list-thumb-cover.withbg:after {
+  background: #2458d2;
+}
+.bike .list-thumb-cover.withbg:after {
+  background: #e89819;
+}
+.car .list-thumb-cover.withbg:after {
+  background: #24c0d2;
+}
+.train .list-thumb-cover.withbg:after {
+  background: #24c0d2;
+}
+.basket .list-thumb-cover.withbg:after {
+  background: #f72063;
+}
+.card-opt-dialog-actions
+  .bordered.radius.button.filled.button-container.btn-block.center.btn-icon-right {
+  padding: 0 10px;
+}
+.dialog-content {
+  transition: 300ms;
+  top: 100%;
+}
+.slide-enter-start .dialog-content {
+  top: 100%;
+}
+.slide-enter-active .dialog-content,
+.slide-enter-done .dialog-content {
+  top: 0;
 }

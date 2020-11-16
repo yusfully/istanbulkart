@@ -1,0 +1,35 @@
+.slider-main-line {
+  height: 2px;
+  background: #e1e1e4;
+  width: 100%;
+  position: relative;
+  margin: 20px;
+}
+.draggable {
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  display: flex;
+
+  z-index: 9;
+}
+.sliderHandler {
+  display: flex;
+  border-radius: 100%;
+  flex: 1 1 100%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #e1e1e4;
+  background: #fff;
+  box-shadow: 0 0 4px #4a4b503d;
+}
+.slider-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.slider-range-line {
+  position: absolute;
+  left: 0;
+  background: #333;
+  height: 2px;
+}

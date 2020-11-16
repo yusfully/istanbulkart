@@ -16,7 +16,7 @@ const FormElement = ({ children,onFormSubmited,onFormChange }) => {
   useEffect(() => {
 
     
-    onFormChange && onFormChange(stateForm.values)
+    onFormChange && onFormChange(stateForm.values,error)
   }, [stateForm.values])
 
   const onFormSubmit = (e) => {
@@ -26,7 +26,7 @@ const FormElement = ({ children,onFormSubmited,onFormChange }) => {
     e.preventDefault();
 
     if(!error){
-      onFormSubmited(stateForm.values)
+      onFormSubmited(stateForm.values,error)
     }
     
   };

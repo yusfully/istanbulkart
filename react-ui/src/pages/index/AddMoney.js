@@ -1,15 +1,33 @@
 
-import React, { useState } from "react";
+import React, { useEffect,useRef } from "react";
 import Button from "../../miniApp/components/buttons/Button";
 import { connect } from "react-redux";
-import { payMoney } from "../../redux/actions/money.action";
+import SliderRange from "./SliderRange"
+import { payMoney,setMoney } from "../../redux/actions/money.action";
 import "./addMoney.scss";
 
-const AddMoney = ({ amount, payMoney }) => {
-  return (
+const AddMoney = ({ amount, payMoney,setMoney }) => {
+const handleSliderChange=(value)=>{
+  
+  if(value!==amount){
+     setMoney(value)
+  }
+ 
+}
+
+useEffect(() => {
+  if(amount && !slider.current.isDragging) {
+    
+    slider.current.setAmount(amount)
+  }
+  
+}, [amount])
+const slider = useRef()
+
+return (
     <div className="add-money-main">
       <div className="add-money-content">
-        
+        <SliderRange  ref={slider} onValueChange={(value)=>handleSliderChange(value)}></SliderRange>
       </div>
 
      <div style={{
@@ -36,8 +54,8 @@ const AddMoney = ({ amount, payMoney }) => {
   color={"#F2F2F2"}
   tapStyle={{
     borderRadius: "20px",
-    backgroundColor: "#FDC415",
-    color: "#4f4f4f",
+    backgroundColor: "transparent",
+    color: "#F2F2F2",
   }}
   addClass="istabulpay-button"
   hoverClass="tapped"
@@ -59,6 +77,7 @@ const AddMoney = ({ amount, payMoney }) => {
 
 const mapDispatchToProps = (dispatch) => ({
   payMoney: (id) => dispatch(payMoney(id)),
+  setMoney:(amount)=>dispatch(setMoney(amount)),
 });
 const mapStateToProps = (state) => ({
   amount: state.addedMoney.moneyAdded,

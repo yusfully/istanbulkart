@@ -209,7 +209,7 @@ const transactionsData = {
         date: "25/10/2020, 18:53",
         amount: "90,00",
         balance: "123,33",
-        category: "shop",
+        category: "basket",
         title: "a101",
       },
       {
@@ -223,7 +223,7 @@ const transactionsData = {
         title: "alabama",
       }
     ],
-    "ksjhdfna98s7dn9as8nydfaıusfh":
+    "1342823828392283":
     [
      
       {
@@ -233,7 +233,7 @@ const transactionsData = {
         date: "01/10/2020, 21:54",
         amount: "10,45",
         balance: "32,33",
-        category: "shop",
+        category: "basket",
         title: "Migros AŞ.",
       },
       {
@@ -322,7 +322,7 @@ const transactionsData = {
       date: "01/10/2020, 21:54",
       amount: "1,45",
       balance: "32,33",
-      category: "shop",
+      category: "basket",
       title: "Migros AŞ.",
     },
     {

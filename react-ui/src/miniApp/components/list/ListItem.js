@@ -257,7 +257,7 @@ const ListItem = ({
         onTouchStart={(e) => handleTouchStart(e)}
         onTouchEnd={(e) => handleTouchEnd(e)}
         onTouchMove={(e) => handleSwipe(e)}
-        className={`list-item  ${
+        className={`list-item ${addClass ? addClass : ""} ${
           (swipeActions || deleteOnSwipe) ? "swipeable" : ""
         } ${deleteOnSwipe ? "delete-swipe" : ""} ${collapseIsOpened ? "opened" : ""}`}
       >

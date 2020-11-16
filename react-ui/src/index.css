@@ -74,6 +74,11 @@ a {
   -webkit-user-select: none;
   -moz-user-select: none;
 }
+span,
+button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
 .app-inner {
   position: relative;
   top: 0;

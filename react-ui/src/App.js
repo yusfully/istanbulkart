@@ -8,6 +8,7 @@ import "./App.css";
 
 const App = ({ data }) => {
 
+  
   const { pages, tabBar, window: windowConfig } = data;
 
   

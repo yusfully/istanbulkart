@@ -47,11 +47,7 @@ return formattedArr
       >
         <div>
           <div
-            style={{
-              left: "0%",
-              height: "20%",
-              position: "relative",
-            }}
+            className="new-card-top"
           >
             <Logo />
           </div>

@@ -244,6 +244,8 @@ export const TabContent = ({
                 (window.innerWidth - tabState.width)
               }px`,
               padding: `0 ${(window.innerWidth - tabState.width) / 2}px`,
+              position:"absolute",
+              width:"100%"
             }}
             className="tab-content"
           >

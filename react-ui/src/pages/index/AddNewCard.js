@@ -8,7 +8,7 @@ import  {Field} from "../../miniApp/components/form/input/Field"
 import { addCard } from "../../redux/actions/cards.action";
 import "./addNewCard.scss";
 
-const AddNewCard = () => {
+const AddNewCard = ({addCard}) => {
 
     const [cardInfo, setCard] = useState({
         name:"",
@@ -16,15 +16,23 @@ const AddNewCard = () => {
     })
 
     const [activeInput, setactiveInput] = useState()
-    const handleFormChange=(values)=>{
+    const [formReady, setFormReady] = useState(false)
+    const handleFormChange=(values,errors)=>{
+      if(errors){
+        setFormReady(false)
+      }else{
+        setFormReady(true)
+      }
         setCard({name:values.name,
         number:values.number})
     }
     const handleFormSubbmited=(values)=>{
-       
+      
+   
     }
 
     const handleFocus=(focused)=>{
+      
         setactiveInput(focused)
     }
   return (
@@ -46,7 +54,7 @@ const AddNewCard = () => {
     </div>
 
     <div className="new-card-form">
-    <Form onFormSubmited={(values)=>handleFormSubbmited(values)} onFormChange={(values)=>handleFormChange(values)}>
+    <Form onFormSubmited={(values,errors)=>handleFormSubbmited(values,errors)} onFormChange={(values,errors)=>handleFormChange(values,errors)}>
     
     <Field
     type="text"
@@ -56,6 +64,7 @@ const AddNewCard = () => {
     labelType="placeholder"
     activeClass="form-active"
     focusClass="form-focused"
+    upperCase
     id="number"
     validation={{
       required: true,
@@ -83,6 +92,7 @@ const AddNewCard = () => {
 
 
 <Button
+disabled={!formReady}
 type="submit"
             text="KART EKLE"
             size="block"

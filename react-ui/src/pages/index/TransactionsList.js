@@ -62,7 +62,7 @@ backgroundColor:"#f6f6f7"
     
         <List.item  
     
-        
+       addClass={`${element.category}`}
         id={`transaction-${element.islemNo ? element.islemNo : element.talimatNo ? element.talimatNo : index}`}
         key={`transaction-${index}`}
           thumb={{
@@ -123,7 +123,7 @@ backgroundColor:"#f6f6f7"
     name={"warning"}
     stroke={"#333333"}
     strokeWidth={"10"}
-    size={100}
+    size={70}
     lineCap="rounded"
     join="rounded"
     ></SvgIcon>

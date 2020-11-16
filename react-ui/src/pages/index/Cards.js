@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import Transactions from "./Transactions";
 import Orders from "./Orders";
 import Modal from "../../miniApp/components/modal/Modal"
-import Portal from "../../miniApp/components/pager/Portal"
 import { addMoney, setMoney } from "../../redux/actions/money.action";
 import SwipablePage from "../../miniApp/components/swipablepage/swipablepage";
 import AddMoney from "./AddMoney";
@@ -86,6 +85,8 @@ const topPart = useRef()
   
 
     scrollCase.current = "start";
+
+   
   }, [myCards]);
 
   useEffect(() => {
@@ -348,12 +349,9 @@ let posTotal=topPartHeight+pos
       
       <Modal
       id="modal-2"
-      closeIcon={{
-        fontIcon: "lni lni-close",
-        fontSize: "24pt",
-      }}
-      transitionEnter="slideleft"
-      transitionGone="slideright"
+     
+      transitionEnter="slidebottom"
+      transitionGone="slidetop"
       className="modal-full"
       title="YENİ KART EKLE" 
        wrapClassName="vertical-center-modal"
@@ -368,20 +366,12 @@ let posTotal=topPartHeight+pos
     <AddNewCard></AddNewCard>
     </Modal>
     <Route path={match.path+"/delete"}>
-    <Portal
-    className="modal-main"
-    id={"delete"}
-    type={"modal"}
-  >
-    <CardOptionsDialogs type="delete"></CardOptionsDialogs></Portal>
+  
+    <CardOptionsDialogs type="delete"></CardOptionsDialogs>
     </Route>
     <Route path={match.path+"/setMain"}>
-    <Portal
-    className="modal-main"
-    id={"main"}
-    type={"modal"}
-  >
-    <CardOptionsDialogs type="setMain"></CardOptionsDialogs></Portal>
+  
+    <CardOptionsDialogs type="setMain"></CardOptionsDialogs>
     </Route>
     </div>
    

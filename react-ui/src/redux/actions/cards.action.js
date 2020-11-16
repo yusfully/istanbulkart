@@ -10,9 +10,12 @@ export const fetchCards = (cards) => ({
   type: CARDS_FETCH,
   payload: cards,
 });
-export const addCard = (credential) => ({
+export const addCard = (number,name) => ({
   type: CARDS_ADD,
-  payload: credential,
+  payload:{
+    number:number,
+    name:name
+  } 
 });
 export const deleteCard = (id) => ({
   type: CARDS_DELETE,
